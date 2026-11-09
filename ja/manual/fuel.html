@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>給油記録 — 使い方マニュアル — CarReplotter</title>
+<link rel="stylesheet" href="../../style.css">
+<link rel="alternate" hreflang="en" href="../../manual/fuel.html">
+</head>
+<body>
+<main class="manual">
+<header>
+  <a class="brand" href="../">CarReplotter</a>
+  <nav><a href="index.html">使い方マニュアル</a><a href="../privacy.html">プライバシー</a><a href="../../manual/fuel.html">English</a></nav>
+</header>
+<nav class="pager"><a href="score.html">← 運転スコアとイベント</a><a href="index.html">目次</a><a href="vehicles.html">車両とバッテリー →</a></nav>
+<h1>給油記録</h1>
+<p class="lead">給油を記録すると、満タンから満タンまでの実燃費が出ます。推定燃費とのずれも分かり、推定燃費を補正できます。</p>
+<figure class="shot"><div class="frame"><img src="../../manual/img/ja/fuel-list.png" alt="" loading="lazy"><span class="box" style="left:3.89%;top:20.13%;width:47.96%;height:3.51%"><span class="mark">1</span></span><span class="box" style="left:3.89%;top:25.37%;width:92.22%;height:22.48%"><span class="mark">2</span></span><span class="box" style="left:3.89%;top:48.76%;width:92.22%;height:11.76%"><span class="mark">3</span></span><span class="box" style="left:3.89%;top:61.47%;width:92.22%;height:15.26%"><span class="mark">4</span></span><span class="box" style="left:3.89%;top:77.56%;width:92.22%;height:10.73%"><span class="mark">5</span></span><span class="box" style="left:82.41%;top:80.86%;width:13.70%;height:6.19%"><span class="mark">6</span></span><span class="box" style="left:81.48%;top:8.04%;width:14.81%;height:2.89%"><span class="mark">7</span></span></div><figcaption><p>走行履歴の上の「給油」。</p><ol class="legend"><li><span class="mark">1</span><span>車両の切り替え</span></li><li><span class="mark">2</span><span>給油ごとの実燃費の推移と、平均（破線）</span></li><li><span class="mark">3</span><span>通算の実燃費と推定燃費</span></li><li><span class="mark">4</span><span>推定燃費の補正の提案</span></li><li><span class="mark">5</span><span>給油。満タンの行には、その区間の実燃費と推定とのずれ</span></li><li><span class="mark">6</span><span>給油を記録します</span></li><li><span class="mark">7</span><span>CSV で書き出します</span></li></ol></figcaption></figure>
+<h2>給油を記録する</h2>
+<figure class="shot"><div class="frame"><img src="../../manual/img/ja/fuel-entry.png" alt="" loading="lazy"><span class="box" style="left:16.94%;top:14.44%;width:62.87%;height:4.33%"><span class="mark">1</span></span><span class="box" style="left:16.94%;top:20.83%;width:65.93%;height:6.06%"><span class="mark">2</span></span><span class="box" style="left:16.94%;top:28.67%;width:47.87%;height:8.66%"><span class="mark">3</span></span><span class="box" style="left:16.94%;top:39.60%;width:65.93%;height:4.13%"><span class="mark">4</span></span><span class="box" style="left:16.94%;top:46.00%;width:65.93%;height:8.04%"><span class="mark">5</span></span><span class="box" style="left:16.94%;top:56.11%;width:65.93%;height:19.60%"><span class="mark">6</span></span><span class="box" style="left:16.94%;top:78.38%;width:65.93%;height:5.98%"><span class="mark">7</span></span></div><figcaption><ol class="legend"><li><span class="mark">1</span><span>日時（前の時刻にもできます）</span></li><li><span class="mark">2</span><span>給油量</span></li><li><span class="mark">3</span><span>燃料の種類（前回と同じものが選ばれています）</span></li><li><span class="mark">4</span><span>満タンにしたか</span></li><li><span class="mark">5</span><span>金額・単価（給油量と合わせて 2 つ入れると、残りを計算します）</span></li><li><span class="mark">6</span><span>車の総走行距離（オドメーター）。前回の値＋記録した距離が候補に出ます</span></li><li><span class="mark">7</span><span>店舗名。前に入れた名前が候補に出ます</span></li></ol></figcaption></figure>
+<p>下には、メモと「前の給油を記録し忘れた」があります。記録し忘れた給油があると、その区間の実燃費は出しません。</p>
+<h2>実燃費と補正</h2>
+<ul><li>実燃費は満タン法です：満タンから次の満タンまでの距離 ÷ その間に入れた燃料</li><li>距離は、総走行距離を入れていればその差、なければその間に記録した走行の距離です</li><li>推定燃費とのずれ：同じ区間に記録した走行の推定の燃料と、実際に入れた燃料を比べます</li><li>補正の提案は、総走行距離を入れていて、その距離の 9 割以上を記録している区間（直近 3 区間まで）から出します</li><li>「使う」を押すと、その車両の推定燃費（走行・メーター・ミニウィンドウ・リプレイ・書き出し）に係数を掛けます。記録したデータはそのままで、いつでもやめられます</li><li>補正を使うのはプレミアムプランの機能です。給油の記録・実燃費・比較は無料です</li></ul>
+<nav class="pager"><a href="score.html">← 運転スコアとイベント</a><a href="index.html">目次</a><a href="vehicles.html">車両とバッテリー →</a></nav>
+<footer>Copyright © 2026 Northeye</footer>
+</main>
+</body>
+</html>

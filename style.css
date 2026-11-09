@@ -50,3 +50,28 @@ ul { padding-left: 1.3em; }
 li { margin: 4px 0; }
 .updated { color: var(--muted); font-size: 0.9rem; }
 footer { margin-top: 56px; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); padding-top: 16px; }
+
+/* 使い方マニュアル */
+main.manual { max-width: 960px; }
+.pager { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: 24px; font-size: 0.95rem; }
+.pager a { margin: 0; color: var(--accent); }
+ol.toc { padding-left: 1.4em; }
+ol.toc li { margin: 10px 0; }
+ol.toc li span { display: block; color: var(--muted); font-size: 0.9rem; }
+.note { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 8px; padding: 10px 16px; margin: 16px 0; }
+figure.shot { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; margin: 24px 0; }
+figure.shot .frame { position: relative; flex: none; width: 300px; max-width: calc(100% - 12px); margin-left: 12px; }
+figure.shot img { display: block; width: 100%; height: auto; border-radius: 20px; border: 1px solid var(--border); background: #000; }
+figure.shot .box { position: absolute; border: 2.5px solid #ff5a5f; border-radius: 8px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35); }
+figure.shot .mark { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%;
+  background: #ff5a5f; color: #fff; font-weight: 700; font-size: 13px; line-height: 1; flex: none; }
+figure.shot .box > .mark { position: absolute; left: -12px; top: -12px; box-shadow: 0 0 0 2px #fff; }
+figure.shot figcaption { flex: 1; min-width: 240px; }
+figure.shot figcaption p { margin-top: 0; }
+ol.legend { list-style: none; padding: 0; margin: 0; }
+ol.legend li { display: flex; gap: 10px; align-items: flex-start; margin: 8px 0; }
+ol.legend li .mark { margin-top: 2px; }
+details.faq { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 16px; margin: 10px 0; }
+details.faq summary { cursor: pointer; font-weight: 600; }
+details.faq div { margin-top: 8px; }
+@media (max-width: 640px) { figure.shot .frame { width: calc(100% - 12px); } }

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>車両とバッテリー — 使い方マニュアル — CarReplotter</title>
+<link rel="stylesheet" href="../../style.css">
+<link rel="alternate" hreflang="en" href="../../manual/vehicles.html">
+</head>
+<body>
+<main class="manual">
+<header>
+  <a class="brand" href="../">CarReplotter</a>
+  <nav><a href="index.html">使い方マニュアル</a><a href="../privacy.html">プライバシー</a><a href="../../manual/vehicles.html">English</a></nav>
+</header>
+<nav class="pager"><a href="fuel.html">← 給油記録</a><a href="index.html">目次</a><a href="settings.html">そのほかの設定 →</a></nav>
+<h1>車両とバッテリー</h1>
+<p class="lead">車両ごとに、走行記録とメーターの配置を分けて保存します。止めている車のバッテリー電圧も見張ります。</p>
+<figure class="shot"><div class="frame"><img src="../../manual/img/ja/settings-vehicles.png" alt="" loading="lazy"><span class="box" style="left:5.83%;top:37.13%;width:86.76%;height:3.30%"><span class="mark">1</span></span><span class="box" style="left:81.48%;top:37.13%;width:11.11%;height:3.30%"><span class="mark">2</span></span><span class="box" style="left:5.83%;top:55.28%;width:86.76%;height:3.09%"><span class="mark">3</span></span><span class="box" style="left:9.26%;top:60.23%;width:25.93%;height:3.51%"><span class="mark">4</span></span><span class="box" style="left:3.89%;top:82.51%;width:92.22%;height:6.19%"><span class="mark">5</span></span></div><figcaption><p>設定の「車両管理」。</p><ol class="legend"><li><span class="mark">1</span><span>止めているときのバッテリー電圧（最後に読んだ値）</span></li><li><span class="mark">2</span><span>直近 30 日の電圧の推移（プレミアムプラン）</span></li><li><span class="mark">3</span><span>警告の基準より低いと赤で出します</span></li><li><span class="mark">4</span><span>この車両を使う（メーターに出す車両）</span></li><li><span class="mark">5</span><span>電圧が低いときに通知で知らせるか</span></li></ol></figcaption></figure>
+<ul><li>排気量は、吸入空気量（MAF）に対応していない車で、推定燃費を吸気圧から計算するのに使います</li><li>ディーゼル車は車両の編集で設定します（燃料の種類が読めない車の燃費の推定に使います）</li><li>アダプターに接続すると、車台番号（取れる車のみ）とアダプターから車両を判別して切り替えます。知らないアダプターのときは、どの車両か聞きます</li><li>フリープランで登録できる車両は 2 台までです</li></ul>
+<h2 id="battery">バッテリー電圧の警告</h2>
+<p>止めている車でアダプターが読んだ電圧（エンジンを止めて 10 分以上たってから）を記録し、続けて低いと通知で知らせます。</p>
+<ul><li>低め：基準（12.2・12.0・11.8 V から選べます。既定は 12.0 V）以下。とても低い：11.6 V 以下</li><li>1 回だけの値では知らせません。24 時間以内に 2 回続けて低かったら知らせます</li><li>同じ車両で 1 日 1 回まで。電圧が 12.4 V 以上に戻るまで、同じ段階では繰り返しません</li><li>アダプターによって、実際より 0.2〜0.3 V 低く出るものがあります。基準を変えて合わせてください</li><li>エンジンがかかっている間の電圧では判定しません</li></ul>
+<figure class="shot"><div class="frame"><img src="../../manual/img/ja/battery-history.png" alt="" loading="lazy"></div><figcaption><p>電圧の推移。破線が警告の基準です。</p></figcaption></figure>
+<nav class="pager"><a href="fuel.html">← 給油記録</a><a href="index.html">目次</a><a href="settings.html">そのほかの設定 →</a></nav>
+<footer>Copyright © 2026 Northeye</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>走行詳細とリプレイ — 使い方マニュアル — CarReplotter</title>
+<link rel="stylesheet" href="../../style.css">
+<link rel="alternate" hreflang="en" href="../../manual/replay.html">
+</head>
+<body>
+<main class="manual">
+<header>
+  <a class="brand" href="../">CarReplotter</a>
+  <nav><a href="index.html">使い方マニュアル</a><a href="../privacy.html">プライバシー</a><a href="../../manual/replay.html">English</a></nav>
+</header>
+<nav class="pager"><a href="trips.html">← 走行履歴</a><a href="index.html">目次</a><a href="score.html">運転スコアとイベント →</a></nav>
+<h1>走行詳細とリプレイ</h1>
+<p class="lead">走行を地図の上で再生し、そのときの速度・回転数・燃費などを確かめられます。</p>
+<h2 id="replay">地図と再生</h2>
+<figure class="shot"><div class="frame"><img src="../../manual/img/ja/detail-top.png" alt="" loading="lazy"><span class="box" style="left:0.00%;top:12.79%;width:100.00%;height:32.38%"><span class="mark">1</span></span><span class="box" style="left:86.11%;top:14.03%;width:10.65%;height:4.74%"><span class="mark">2</span></span><span class="box" style="left:3.89%;top:46.95%;width:96.11%;height:3.47%"><span class="mark">3</span></span><span class="box" style="left:26.39%;top:54.66%;width:47.22%;height:5.57%"><span class="mark">4</span></span><span class="box" style="left:3.89%;top:61.47%;width:92.22%;height:4.95%"><span class="mark">5</span></span><span class="box" style="left:80.56%;top:66.83%;width:15.56%;height:4.33%"><span class="mark">6</span></span><span class="box" style="left:3.89%;top:73.43%;width:92.22%;height:14.85%"><span class="mark">7</span></span></div><figcaption><ol class="legend"><li><span class="mark">1</span><span>ルートを色分けして描きます。ピンはイベント（押すと内容、その時刻へ移ります）</span></li><li><span class="mark">2</span><span>3D の地図に切り替えます</span></li><li><span class="mark">3</span><span>色分けとグラフの値（速度・回転数・燃費・アクセル・エンジン負荷・水温・標高）</span></li><li><span class="mark">4</span><span>再生・一時停止と、前・次のイベントへ</span></li><li><span class="mark">5</span><span>シークバー。上の印はイベント、帯は休憩</span></li><li><span class="mark">6</span><span>再生の速さ（押すたびに ×1・×4・×16・×60）</span></li><li><span class="mark">7</span><span>時系列のグラフ。押す・横になぞると、その時刻へ移ります</span></li></ol></figcaption></figure>
+<p>アクセル・エンジン負荷・水温・標高の色分けとグラフはプレミアムプランの機能です（記録にある値だけ出ます）。</p>
+<figure class="shot"><div class="frame"><img src="../../manual/img/ja/detail-3d.png" alt="" loading="lazy"><span class="box" style="left:86.11%;top:14.03%;width:10.65%;height:4.74%"><span class="mark">1</span></span></div><figcaption><p>3D の地図。進行方向を上にして、車の後ろから見下ろします。都市部では建物が立体で出ます。地図を指で動かすと車を追うのをやめ、再生すると戻ります。</p><ol class="legend"><li><span class="mark">1</span><span>真上からの地図に戻します</span></li></ol></figcaption></figure>
+<h3>点線の区間</h3>
+<ul><li><strong>点線</strong>：GPS の電波が弱かった区間（トンネル・屋根の下など）。前後の位置を直線で結んでいます</li><li><strong>灰色の細かい点線</strong>：GPS を記録していなかった区間（位置情報の許可・端末の位置情報がオフ）</li><li>どちらも、再生中の車は OBD の車速に合わせて直線の上を進みます（止まっていた間は進みません）</li></ul>
+<h2>そのときの値・イベント・集計</h2>
+<figure class="shot"><div class="frame"><img src="../../manual/img/ja/detail-scroll1.png" alt="" loading="lazy"><span class="box" style="left:3.89%;top:47.85%;width:92.22%;height:8.66%"><span class="mark">1</span></span><span class="box" style="left:3.89%;top:58.37%;width:92.22%;height:9.69%"><span class="mark">2</span></span><span class="box" style="left:3.89%;top:71.16%;width:92.22%;height:17.12%"><span class="mark">3</span></span></div><figcaption><ol class="legend"><li><span class="mark">1</span><span>再生している時刻の値</span></li><li><span class="mark">2</span><span>イベントの一覧。段階・強さ・減点・走り始めからの時間。押すとその時刻へ</span></li><li><span class="mark">3</span><span>距離・時間・推定燃費・走行時間・平均速度・最高速度</span></li></ol></figcaption></figure>
+<p>イベントは、急加速・急減速・急ハンドル・速度超過（それぞれ低・中・高の段階）と、衝撃・休憩です。どの段階から地図に出すかは設定の「走行中のイベント」で選べます（<a href="score.html">運転スコアとイベント</a>）。</p>
+<figure class="shot"><div class="frame"><img src="../../manual/img/ja/detail-scroll3.png" alt="" loading="lazy"><span class="box" style="left:3.89%;top:45.17%;width:92.22%;height:6.81%"><span class="mark">1</span></span><span class="box" style="left:3.89%;top:53.42%;width:92.22%;height:12.17%"><span class="mark">2</span></span><span class="box" style="left:3.89%;top:67.04%;width:92.22%;height:7.63%"><span class="mark">3</span></span><span class="box" style="left:3.89%;top:76.11%;width:92.22%;height:12.17%"><span class="mark">4</span></span></div><figcaption><ol class="legend"><li><span class="mark">1</span><span>走行の名前</span></li><li><span class="mark">2</span><span>用途（通勤・業務・送迎・ドライブなど）・費用（通行料・燃料代など）・メモ</span></li><li><span class="mark">3</span><span>走った車両（あとから選び直せます）</span></li><li><span class="mark">4</span><span>出発地・到着地。登録地点にできます</span></li></ol></figcaption></figure>
+<h2 id="export">書き出しと共有</h2>
+<figure class="shot"><div class="frame"><img src="../../manual/img/ja/detail-export.png" alt="" loading="lazy"><span class="box" style="left:17.41%;top:11.96%;width:67.31%;height:22.28%"><span class="mark">1</span></span><span class="box" style="left:17.41%;top:34.24%;width:67.31%;height:5.36%"><span class="mark">2</span></span></div><figcaption><p>右上の「エクスポート」。</p><ol class="legend"><li><span class="mark">1</span><span>KML（Google Earth でリプレイ）・GPX（地図ソフト向け）・CSV（表計算向け。1 秒ごとの値）</span></li><li><span class="mark">2</span><span>CarReplotter 形式。ほかの CarReplotter で開いてリプレイできます</span></li></ol></figcaption></figure>
+<p>CarReplotter 形式では、走り始めと終わりを削って（自宅の場所を伏せるため）、メモと費用を含めるかを選べます。アダプターの名前・車台番号・住所は含めません。</p>
+<nav class="pager"><a href="trips.html">← 走行履歴</a><a href="index.html">目次</a><a href="score.html">運転スコアとイベント →</a></nav>
+<footer>Copyright © 2026 Northeye</footer>
+</main>
+</body>
+</html>

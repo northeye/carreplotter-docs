@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>運転スコアとイベント — 使い方マニュアル — CarReplotter</title>
+<link rel="stylesheet" href="../../style.css">
+<link rel="alternate" hreflang="en" href="../../manual/score.html">
+</head>
+<body>
+<main class="manual">
+<header>
+  <a class="brand" href="../">CarReplotter</a>
+  <nav><a href="index.html">使い方マニュアル</a><a href="../privacy.html">プライバシー</a><a href="../../manual/score.html">English</a></nav>
+</header>
+<nav class="pager"><a href="replay.html">← 走行詳細とリプレイ</a><a href="index.html">目次</a><a href="fuel.html">給油記録 →</a></nav>
+<h1>運転スコアとイベント</h1>
+<p class="lead">走行ごとに 100 点満点のスコアを出します。どのイベントで何点減ったかがすべて分かります。計算は端末の中だけで、どこにも送りません。</p>
+<figure class="shot"><div class="frame"><img src="../../manual/img/ja/detail-scroll2.png" alt="" loading="lazy"><span class="box" style="left:3.89%;top:49.59%;width:92.22%;height:18.07%"><span class="mark">1</span></span><span class="box" style="left:11.11%;top:55.90%;width:32.41%;height:3.09%"><span class="mark">2</span></span><span class="box" style="left:3.89%;top:69.10%;width:92.22%;height:17.74%"><span class="mark">3</span></span></div><figcaption><p>走行詳細の集計の下。</p><ol class="legend"><li><span class="mark">1</span><span>運転スコアと、イベントの種類・段階ごとの回数と減点</span></li><li><span class="mark">2</span><span>地図に出していない段階のイベントも減点します（その旨を書きます）</span></li><li><span class="mark">3</span><span>エコの評価（スコアとは別）</span></li></ol></figcaption></figure>
+<h2>スコアの付け方</h2>
+<ul><li>100 点から、イベント 1 件ごとに減点します：低 −1、中 −3、高 −6</li><li>長い走行ほどイベントが出やすいので、10 km より長い走行は「10 km ÷ 走行距離」を掛けてならします</li><li>衝撃（段差・悪路でも出る）と休憩は減点しません</li><li>距離が 1 km 未満の走行と、OBD の車速がない走行（GPS だけ）はスコアを出しません</li><li>スコアはイベントを地図に出す設定に関係なく付けます。速度超過の速度を変えたときだけ変わります</li></ul>
+<h2 id="levels">イベントの段階</h2>
+<figure class="shot"><div class="frame"><img src="../../manual/img/ja/settings-events.png" alt="" loading="lazy"><span class="box" style="left:3.89%;top:26.82%;width:81.30%;height:3.71%"><span class="mark">1</span></span><span class="box" style="left:3.89%;top:55.69%;width:92.22%;height:11.14%"><span class="mark">2</span></span><span class="box" style="left:3.89%;top:70.13%;width:92.22%;height:18.15%"><span class="mark">3</span></span></div><figcaption><p>設定の「走行中のイベント」。</p><ol class="legend"><li><span class="mark">1</span><span>地図・一覧・記録中の知らせに出す段階（出さない／低から／中から／高だけ）</span></li><li><span class="mark">2</span><span>速度超過の段階：設定の速度を超えた量で決め、30 秒以上続くと 1 段上げます</span></li><li><span class="mark">3</span><span>速度超過の基準の速度（一般道・高速道路）</span></li></ol></figcaption></figure>
+<ul><li>急加速：低 0.2 G（1 秒に約 7 km/h）・中 0.3 G・高 0.4 G</li><li>急減速：低 0.25 G（1 秒に約 9 km/h）・中 0.35 G・高 0.5 G</li><li>急ハンドル：低 0.3 G・中 0.4 G・高 0.5 G（40 km/h 以上で、GPS の進行方向の変化から）</li><li>速度超過：設定の速度を 5 秒以上続けて超えたとき。低：超えた・中：＋10 km/h・高：＋20 km/h</li><li>衝撃：端末の揺れ（ホルダーに固定してください）</li></ul>
+<h2 id="eco">エコの評価</h2>
+<p>燃費の良さはスコアに混ぜず、同じ車両のほかの走行と比べて出します。</p>
+<ul><li>燃費：いつもより何 % 良い・悪いか（比べる走行が 3 件・合計 30 km 以上あるとき）</li><li>アイドリング：止まってエンジンをかけていた時間の割合</li><li>惰性走行（燃料カット）：走行中に燃料をほとんど使っていなかった時間の割合</li><li>高回転：3000 rpm（ディーゼル車は 2500 rpm）以上で走った時間の割合</li></ul>
+<nav class="pager"><a href="replay.html">← 走行詳細とリプレイ</a><a href="index.html">目次</a><a href="fuel.html">給油記録 →</a></nav>
+<footer>Copyright © 2026 Northeye</footer>
+</main>
+</body>
+</html>

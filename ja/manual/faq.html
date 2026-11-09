@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>よくある質問 — 使い方マニュアル — CarReplotter</title>
+<link rel="stylesheet" href="../../style.css">
+<link rel="alternate" hreflang="en" href="../../manual/faq.html">
+</head>
+<body>
+<main class="manual">
+<header>
+  <a class="brand" href="../">CarReplotter</a>
+  <nav><a href="index.html">使い方マニュアル</a><a href="../privacy.html">プライバシー</a><a href="../../manual/faq.html">English</a></nav>
+</header>
+<nav class="pager"><a href="premium.html">← プレミアムプラン</a><a href="index.html">目次</a></nav>
+<h1>よくある質問</h1>
+<h2>接続・記録</h2>
+<details class="faq"><summary>アダプターが見つからない・接続できません</summary><div>BLE に対応したアダプターか確かめてください（Bluetooth Classic だけのものは使えません）。エンジン（またはイグニッション）をオンにし、付近のデバイスの許可があるか確かめてください。ほかのアプリがアダプターにつないでいると接続できません。Wi-Fi 型はスマートフォンをアダプターの Wi-Fi につないでから、住所（多くは 192.168.0.10:35000）を入れます。</div></details>
+<details class="faq"><summary>自動で記録が始まりません</summary><div>一度アプリから接続した BLE のアダプターだけが、近くに現れたときに自動で接続します。設定の「記録」で自動記録がオンか確かめてください。省電力の設定で、このアプリの裏での動作が制限されていると始まらないことがあります（Android の設定で「バッテリー」を「制限なし」にしてください）。</div></details>
+<details class="faq"><summary>ルート（GPS）が記録されていません</summary><div>位置情報が「アプリの使用中のみ許可」だと、アプリを閉じている間に始まった記録では、アプリを開くか通知の「GPS も記録」を押すまで GPS を使えません。最初から記録したいときは、設定の「記録」で「アプリを閉じているときも GPS を記録」をオンにします。走行詳細では、GPS を記録していなかった区間を灰色の細かい点線で描きます。</div></details>
+<details class="faq"><summary>回転数や燃費が出ない項目があります</summary><div>車が対応していない値は出ません（接続時に対応している値を調べます）。燃費は、吸入空気量（MAF）に対応していない車では、車両の排気量を設定すると吸気圧から推定します。</div></details>
+<details class="faq"><summary>車につないだままでバッテリーは上がりませんか</summary><div>エンジンを止めて記録を終えると接続を切り、アダプターが眠れるようにしています（「停車後も接続を維持」の時間だけは保ちます）。ただし、アダプターそのものが電気を使うものもあります。長く乗らないときは抜いておくと安心です。止めている車のバッテリー電圧が続けて低いときは通知で知らせます。</div></details>
+<h2>燃費・スコア</h2>
+<details class="faq"><summary>推定燃費が実際と合いません</summary><div>推定燃費は、吸入空気量（MAF）または吸気圧と排気量から計算した値で、車によってずれがあります。給油記録を付けると実燃費とのずれが分かり、プレミアムプランでは推定燃費を補正できます。</div></details>
+<details class="faq"><summary>運転スコアはどこかに送られますか</summary><div>送りません。スコアは端末の中だけで計算し、保険会社などにも送りません。</div></details>
+<details class="faq"><summary>スコアが低く出ます</summary><div>減点はすべて、走行詳細の「運転スコア」の欄に、イベントの種類・段階ごとに出ています。どのイベントで減ったかを確かめてください。地図に出していない段階（「低」など）のイベントも減点しています。</div></details>
+<h2>データ・プライバシー</h2>
+<details class="faq"><summary>走った場所はどこかに送られますか</summary><div>走行のルート（GPS の記録）は端末の外に送りません。アカウントやサーバーはなく、広告や利用状況の分析もしていません。地図の表示（表示している範囲が地図の提供元に伝わります）と、出発地・到着地の住所の表示（端末の住所検索）だけは場所が伝わります。くわしくは<a href="../privacy.html">プライバシーポリシー</a>をご覧ください。</div></details>
+<details class="faq"><summary>機種を変えるときは</summary><div>設定の「バックアップ」で「データを書き出す」を行い、新しい端末で「バックアップから戻す」を行ってください。</div></details>
+<details class="faq"><summary>ほかの人に走行を送りたい</summary><div>走行詳細の「エクスポート」→「CarReplotter 形式で共有」で送れます。受け取った人は、ファイルを開くか、走行履歴の「走行を読み込む」で読み込みます。</div></details>
+<h2>お問い合わせ</h2>
+<p>ご質問・不具合の報告・ご意見は <a href="mailto:carreplotter@northeye.org">carreplotter@northeye.org</a> までお送りください。</p>
+<nav class="pager"><a href="premium.html">← プレミアムプラン</a><a href="index.html">目次</a></nav>
+<footer>Copyright © 2026 Northeye</footer>
+</main>
+</body>
+</html>
