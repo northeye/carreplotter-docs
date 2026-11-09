@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-label="A replayed route colored by speed, with events and a speed graph">
+  <defs>
+    <!-- 夜空と地平線の明かり -->
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#05080d"/>
+      <stop offset="0.38" stop-color="#0d1b2a"/>
+      <stop offset="0.47" stop-color="#1d3346"/>
+      <stop offset="0.5" stop-color="#0b131b"/>
+      <stop offset="1" stop-color="#05070a"/>
+    </linearGradient>
+    <radialGradient id="horizon" cx="1.05" cy="0.54" r="0.5" gradientTransform="matrix(1 0 0 0.35 0 0.305)">
+      <stop offset="0" stop-color="#ffb35c" stop-opacity="0.55"/>
+      <stop offset="0.35" stop-color="#ff7a3d" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#ff7a3d" stop-opacity="0"/>
+    </radialGradient>
+    <!-- 路面（遠くほど明るい） -->
+    <linearGradient id="asphalt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b232d"/>
+      <stop offset="1" stop-color="#07090c"/>
+    </linearGradient>
+    <!-- テールランプの光 -->
+    <radialGradient id="tail" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff5a4e" stop-opacity="0.9"/>
+      <stop offset="0.4" stop-color="#ff2d2d" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#ff2d2d" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bodyShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a323c"/>
+      <stop offset="0.45" stop-color="#151a20"/>
+      <stop offset="1" stop-color="#0a0c0f"/>
+    </linearGradient>
+    <linearGradient id="sideShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#232a33"/>
+      <stop offset="0.5" stop-color="#11151a"/>
+      <stop offset="1" stop-color="#07090b"/>
+    </linearGradient>
+    <linearGradient id="redSide" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e0262f"/>
+      <stop offset="0.5" stop-color="#a40f18"/>
+      <stop offset="1" stop-color="#4a050a"/>
+    </linearGradient>
+    <linearGradient id="redRear" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b3131c"/>
+      <stop offset="0.55" stop-color="#7a0b12"/>
+      <stop offset="1" stop-color="#2e0306"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b4f63"/>
+      <stop offset="1" stop-color="#121a22"/>
+    </linearGradient>
+    <!-- ルートの色（アプリの色分けと同じ：遅い＝青、中＝緑〜黄、速い＝赤） -->
+    <linearGradient id="speed" gradientUnits="userSpaceOnUse" x1="60" y1="0" x2="1140" y2="0">
+      <stop offset="0" stop-color="#3a86ff"/>
+      <stop offset="0.28" stop-color="#2ec4b6"/>
+      <stop offset="0.55" stop-color="#ffd166"/>
+      <stop offset="0.72" stop-color="#ef476f"/>
+      <stop offset="0.86" stop-color="#ffd166"/>
+      <stop offset="1" stop-color="#2ec4b6"/>
+    </linearGradient>
+    <linearGradient id="graphFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2ec4b6" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#2ec4b6" stop-opacity="0"/>
+    </linearGradient>
+    <!-- 文字・線を読みやすくする下の暗がり -->
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0.35"/>
+      <stop offset="0.45" stop-color="#000" stop-opacity="0"/>
+      <stop offset="0.8" stop-color="#000" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.55"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-50%" width="140%" height="200%">
+      <feGaussianBlur stdDeviation="9" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="blur3"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="blur8"><feGaussianBlur stdDeviation="8"/></filter>
+    <!-- 速さを感じさせる、路面の横方向のぶれ -->
+    <filter id="motion" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="0 6"/>
+    </filter>
+    <clipPath id="frame"><rect width="1200" height="460" rx="24"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="460" fill="url(#shade)"/>
+
+    <!-- ───── 重ねる絵：リプレイのルート・イベント・グラフ（少し透かす） ───── -->
+    <g opacity="0.9">
+      <path d="M70 335 C 150 318, 175 275, 250 268 S 360 300, 420 280 S 480 214, 560 214 S 660 262, 730 240 S 800 138, 880 142 S 960 212, 1030 192 S 1100 118, 1140 104"
+            fill="none" stroke="url(#speed)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity="0.5" filter="url(#glow)"/>
+      <path d="M70 335 C 150 318, 175 275, 250 268 S 360 300, 420 280 S 480 214, 560 214 S 660 262, 730 240 S 800 138, 880 142 S 960 212, 1030 192 S 1100 118, 1140 104"
+            fill="none" stroke="url(#speed)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- 出発・到着 -->
+      <circle cx="70" cy="335" r="9" fill="#0b1016" stroke="#ffffff" stroke-width="4"/>
+      <circle cx="1140" cy="104" r="11" fill="#2ec4b6" stroke="#ffffff" stroke-width="4"/>
+      <!-- イベントの印 -->
+      <g transform="translate(655 258)">
+        <path d="M-46 -52 h92 a14 14 0 0 1 14 14 v8 a14 14 0 0 1 -14 14 h-38 l-8 10 l-8 -10 h-38 a14 14 0 0 1 -14 -14 v-8 a14 14 0 0 1 14 -14z" fill="#d946b6"/>
+        <circle cx="-30" cy="-34" r="5" fill="#ffffff"/>
+        <rect x="-18" y="-38" width="54" height="8" rx="4" fill="#ffffff" fill-opacity="0.85"/>
+      </g>
+      <g transform="translate(880 142)">
+        <path d="M-40 -52 h80 a14 14 0 0 1 14 14 v8 a14 14 0 0 1 -14 14 h-32 l-8 10 l-8 -10 h-32 a14 14 0 0 1 -14 -14 v-8 a14 14 0 0 1 14 -14z" fill="#8b7cf6"/>
+        <circle cx="-24" cy="-34" r="5" fill="#ffffff"/>
+        <rect x="-12" y="-38" width="44" height="8" rx="4" fill="#ffffff" fill-opacity="0.85"/>
+      </g>
+      <!-- 再生中の車（ルートに沿って左から右へ） -->
+      <g transform="translate(730 240) rotate(52)">
+        <circle r="30" fill="#2ec4b6" fill-opacity="0.2"/>
+        <path d="M0 -20 L14 14 L0 7 L-14 14 Z" fill="#2ec4b6" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+      </g>
+      <!-- 下のグラフ（速度の推移）と再生位置 -->
+      <rect x="40" y="380" width="1120" height="60" rx="14" fill="#05080c" fill-opacity="0.45" stroke="#ffffff" stroke-opacity="0.1"/>
+      <path d="M60 430 L60 427.5 L66 424.8 L72 421.3 L78 418.8 L84 416.2 L90 413.4 L96 411.4 L102 408.8 L108 406.0 L114 402.8 L120 401.0 L126 398.8 L132 397.0 L138 393.8 L144 390.8 L150 390.0 L156 390.0 L162 390.0 L168 390.0 L174 390.0 L180 391.9 L186 394.6 L192 394.5 L198 396.9 L204 398.7 L210 400.1 L216 402.8 L222 403.0 L228 403.3 L234 401.4 L240 401.3 L246 400.5 L252 400.5 L258 399.6 L264 399.8 L270 401.1 L276 398.3 L282 395.5 L288 393.6 L294 392.4 L300 395.6 L306 398.5 L312 401.6 L318 404.2 L324 408.4 L330 411.8 L336 416.2 L342 419.5 L348 425.5 L354 430.0 L360 430.0 L366 430.0 L372 430.0 L378 430.0 L384 426.5 L390 423.2 L396 421.6 L402 419.6 L408 416.1 L414 413.6 L420 410.0 L426 407.7 L432 405.9 L438 403.0 L444 399.9 L450 397.8 L456 396.0 L462 393.7 L468 390.2 L474 390.0 L480 392.1 L486 393.6 L492 395.8 L498 398.3 L504 396.6 L510 398.4 L516 398.1 L522 398.4 L528 400.1 L534 398.8 L540 400.9 L546 400.1 L552 402.2 L558 402.6 L564 404.3 L570 405.5 L576 402.9 L582 401.2 L588 402.3 L594 400.2 L600 403.1 L606 406.4 L612 410.9 L618 414.8 L624 417.4 L630 422.2 L636 425.1 L642 423.0 L648 419.9 L654 417.6 L660 415.4 L666 413.7 L672 411.9 L678 409.1 L684 407.0 L690 404.2 L696 401.9 L702 402.1 L708 399.6 L714 399.7 L720 399.2 L726 397.2 L732 399.0 L738 400.9 L744 398.6 L750 396.8 L756 398.2 L762 400.0 L768 398.6 L774 396.2 L780 397.9 L786 395.4 L792 393.2 L798 392.6 L804 393.1 L810 395.3 L816 397.9 L822 402.6 L828 405.6 L834 409.6 L840 412.7 L846 417.0 L852 423.0 L858 429.0 L864 430.0 L870 430.0 L876 430.0 L882 430.0 L888 430.0 L894 430.0 L900 427.2 L906 425.0 L912 423.1 L918 420.0 L924 418.3 L930 416.2 L936 413.5 L942 410.2 L948 407.4 L954 405.2 L960 401.8 L966 399.8 L972 398.1 L978 396.0 L984 396.3 L990 398.8 L996 400.6 L1002 401.3 L1008 400.9 L1014 403.0 L1020 403.8 L1026 401.6 L1032 398.9 L1038 398.0 L1044 396.9 L1050 396.4 L1056 398.5 L1062 401.1 L1068 403.8 L1074 401.5 L1080 400.3 L1086 397.8 L1092 400.4 L1098 399.7 L1104 403.2 L1110 407.4 L1116 410.5 L1122 415.3 L1128 417.9 L1134 421.6 L1140 425.8 L1140 430 Z" fill="url(#graphFill)"/>
+      <path d="M60 427.5 L66 424.8 L72 421.3 L78 418.8 L84 416.2 L90 413.4 L96 411.4 L102 408.8 L108 406.0 L114 402.8 L120 401.0 L126 398.8 L132 397.0 L138 393.8 L144 390.8 L150 390.0 L156 390.0 L162 390.0 L168 390.0 L174 390.0 L180 391.9 L186 394.6 L192 394.5 L198 396.9 L204 398.7 L210 400.1 L216 402.8 L222 403.0 L228 403.3 L234 401.4 L240 401.3 L246 400.5 L252 400.5 L258 399.6 L264 399.8 L270 401.1 L276 398.3 L282 395.5 L288 393.6 L294 392.4 L300 395.6 L306 398.5 L312 401.6 L318 404.2 L324 408.4 L330 411.8 L336 416.2 L342 419.5 L348 425.5 L354 430.0 L360 430.0 L366 430.0 L372 430.0 L378 430.0 L384 426.5 L390 423.2 L396 421.6 L402 419.6 L408 416.1 L414 413.6 L420 410.0 L426 407.7 L432 405.9 L438 403.0 L444 399.9 L450 397.8 L456 396.0 L462 393.7 L468 390.2 L474 390.0 L480 392.1 L486 393.6 L492 395.8 L498 398.3 L504 396.6 L510 398.4 L516 398.1 L522 398.4 L528 400.1 L534 398.8 L540 400.9 L546 400.1 L552 402.2 L558 402.6 L564 404.3 L570 405.5 L576 402.9 L582 401.2 L588 402.3 L594 400.2 L600 403.1 L606 406.4 L612 410.9 L618 414.8 L624 417.4 L630 422.2 L636 425.1 L642 423.0 L648 419.9 L654 417.6 L660 415.4 L666 413.7 L672 411.9 L678 409.1 L684 407.0 L690 404.2 L696 401.9 L702 402.1 L708 399.6 L714 399.7 L720 399.2 L726 397.2 L732 399.0 L738 400.9 L744 398.6 L750 396.8 L756 398.2 L762 400.0 L768 398.6 L774 396.2 L780 397.9 L786 395.4 L792 393.2 L798 392.6 L804 393.1 L810 395.3 L816 397.9 L822 402.6 L828 405.6 L834 409.6 L840 412.7 L846 417.0 L852 423.0 L858 429.0 L864 430.0 L870 430.0 L876 430.0 L882 430.0 L888 430.0 L894 430.0 L900 427.2 L906 425.0 L912 423.1 L918 420.0 L924 418.3 L930 416.2 L936 413.5 L942 410.2 L948 407.4 L954 405.2 L960 401.8 L966 399.8 L972 398.1 L978 396.0 L984 396.3 L990 398.8 L996 400.6 L1002 401.3 L1008 400.9 L1014 403.0 L1020 403.8 L1026 401.6 L1032 398.9 L1038 398.0 L1044 396.9 L1050 396.4 L1056 398.5 L1062 401.1 L1068 403.8 L1074 401.5 L1080 400.3 L1086 397.8 L1092 400.4 L1098 399.7 L1104 403.2 L1110 407.4 L1116 410.5 L1122 415.3 L1128 417.9 L1134 421.6 L1140 425.8" fill="none" stroke="#2ec4b6" stroke-width="2" stroke-linejoin="round"/>
+      <line x1="730" y1="386" x2="730" y2="434" stroke="#ffffff" stroke-opacity="0.8" stroke-width="2"/>
+      <circle cx="730" cy="399.0" r="5" fill="#2ec4b6" stroke="#ffffff" stroke-width="2"/>
+      <rect x="650" y="426" width="4" height="10" rx="2" fill="#d946b6"/>
+      <rect x="878" y="426" width="4" height="10" rx="2" fill="#8b7cf6"/>
+    </g>
+  </g>
+</svg>
