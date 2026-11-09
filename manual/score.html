@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Driving score and events — User guide — CarReplotter</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="ja" href="../ja/manual/score.html">
+</head>
+<body>
+<main class="manual">
+<header>
+  <a class="brand" href="../">CarReplotter</a>
+  <nav><a href="index.html">User guide</a><a href="../privacy.html">Privacy</a><a href="../ja/manual/score.html">日本語</a></nav>
+</header>
+<nav class="pager"><a href="replay.html">← Trip details and replay</a><a href="index.html">Contents</a><a href="fuel.html">Fuel log →</a></nav>
+<h1>Driving score and events</h1>
+<p class="lead">Each trip gets a score out of 100, and you can see exactly which events cost how many points. It is calculated only on your device and never sent anywhere.</p>
+<figure class="shot"><div class="frame"><img src="img/en/detail-scroll2.png" alt="" loading="lazy"><span class="box" style="left:3.89%;top:55.90%;width:92.22%;height:20.63%"><span class="mark">1</span></span><span class="box" style="left:11.11%;top:67.24%;width:33.33%;height:3.71%"><span class="mark">2</span></span><span class="box" style="left:3.89%;top:77.97%;width:92.22%;height:10.31%"><span class="mark">3</span></span></div><figcaption><p>Below the summary in trip details.</p><ol class="legend"><li><span class="mark">1</span><span>Driving score and the count and deduction for each event type and level</span></li><li><span class="mark">2</span><span>Events at levels hidden from the map are still deducted (and labeled so)</span></li><li><span class="mark">3</span><span>Eco review (separate from the score)</span></li></ol></figcaption></figure>
+<h2>How the score works</h2>
+<ul><li>Start from 100 and deduct for each event: low −1, medium −3, high −6</li><li>Longer trips have more chances for events, so deductions on trips over 10 km (6.2 mi) are scaled by “10 km ÷ trip distance”</li><li>Impacts (which bumps and rough roads also cause) and breaks are not deducted</li><li>Trips under 1 km (0.6 mi) and trips without speed from the car (GPS only) get no score</li><li>The score does not depend on which levels are shown on the map. It changes only when you change the speeding thresholds</li></ul>
+<h2 id="levels">Event levels</h2>
+<figure class="shot"><div class="frame"><img src="img/en/settings-events.png" alt="" loading="lazy"><span class="box" style="left:3.89%;top:26.40%;width:75.74%;height:9.08%"><span class="mark">1</span></span><span class="box" style="left:3.89%;top:70.96%;width:92.22%;height:5.78%"><span class="mark">2</span></span><span class="box" style="left:3.89%;top:77.76%;width:92.22%;height:9.08%"><span class="mark">3</span></span></div><figcaption><p>Settings → Driving events.</p><ol class="legend"><li><span class="mark">1</span><span>Levels shown on the map, in lists and in live alerts (hide / low and up / medium and up / high only)</span></li><li><span class="mark">2</span><span>Speeding level: from how far over the limit, one level higher if it lasts 30 seconds or more</span></li><li><span class="mark">3</span><span>Levels of speeding to show. The speed limits for local roads and expressways are below</span></li></ol></figcaption></figure>
+<ul><li>Hard acceleration: low 0.2 G (about 7 km/h, 4 mph per second), medium 0.3 G, high 0.4 G</li><li>Hard braking: low 0.25 G (about 9 km/h, 5.5 mph per second), medium 0.35 G, high 0.5 G</li><li>Sharp turn: low 0.3 G, medium 0.4 G, high 0.5 G (at 40 km/h, 25 mph or faster, from the change in GPS heading)</li><li>Speeding: over the set speed for 5 seconds or more. Low: over the limit, medium: +10 km/h (6 mph), high: +20 km/h (12 mph)</li><li>Impact: a jolt to the device (mount it in a holder)</li></ul>
+<h2 id="eco">Eco review</h2>
+<p>Fuel economy is not mixed into the score. It is compared with your other trips in the same vehicle instead.</p>
+<ul><li>Fuel economy: how many percent better or worse than usual (when there are at least 3 other trips and 30 km, 19 mi in total)</li><li>Idling: the share of time stopped with the engine running</li><li>Coasting (fuel cut): the share of moving time with almost no fuel used</li><li>High RPM: the share of time at 3000 rpm or more (2500 rpm for diesel vehicles)</li></ul>
+<nav class="pager"><a href="replay.html">← Trip details and replay</a><a href="index.html">Contents</a><a href="fuel.html">Fuel log →</a></nav>
+<footer>Copyright © 2026 Northeye</footer>
+</main>
+</body>
+</html>

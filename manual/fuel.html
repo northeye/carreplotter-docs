@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fuel log — User guide — CarReplotter</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="ja" href="../ja/manual/fuel.html">
+</head>
+<body>
+<main class="manual">
+<header>
+  <a class="brand" href="../">CarReplotter</a>
+  <nav><a href="index.html">User guide</a><a href="../privacy.html">Privacy</a><a href="../ja/manual/fuel.html">日本語</a></nav>
+</header>
+<nav class="pager"><a href="score.html">← Driving score and events</a><a href="index.html">Contents</a><a href="vehicles.html">Vehicles and battery →</a></nav>
+<h1>Fuel log</h1>
+<p class="lead">Log your fill-ups to see your actual fuel economy between full tanks, how it compares with the estimate, and to correct the estimate.</p>
+<figure class="shot"><div class="frame"><img src="img/en/fuel-list.png" alt="" loading="lazy"><span class="box" style="left:3.89%;top:20.13%;width:37.78%;height:3.51%"><span class="mark">1</span></span><span class="box" style="left:3.89%;top:25.37%;width:92.22%;height:22.28%"><span class="mark">2</span></span><span class="box" style="left:3.89%;top:48.60%;width:92.22%;height:11.43%"><span class="mark">3</span></span><span class="box" style="left:3.89%;top:60.97%;width:92.22%;height:15.14%"><span class="mark">4</span></span><span class="box" style="left:3.89%;top:77.15%;width:92.22%;height:11.14%"><span class="mark">5</span></span><span class="box" style="left:82.41%;top:80.86%;width:13.70%;height:6.19%"><span class="mark">6</span></span><span class="box" style="left:84.26%;top:8.04%;width:12.04%;height:2.89%"><span class="mark">7</span></span></div><figcaption><p>“Fuel” at the top of Trips.</p><ol class="legend"><li><span class="mark">1</span><span>Switch vehicles</span></li><li><span class="mark">2</span><span>Actual fuel economy for each fill-up, and the average (dashed)</span></li><li><span class="mark">3</span><span>Overall actual and estimated fuel economy</span></li><li><span class="mark">4</span><span>Suggested correction of the estimate</span></li><li><span class="mark">5</span><span>A fill-up. Full fill-ups show the actual fuel economy for the interval and the difference from the estimate</span></li><li><span class="mark">6</span><span>Add a fill-up</span></li><li><span class="mark">7</span><span>Export as CSV</span></li></ol></figcaption></figure>
+<h2>Adding a fill-up</h2>
+<figure class="shot"><div class="frame"><img src="img/en/fuel-entry.png" alt="" loading="lazy"><span class="box" style="left:16.94%;top:14.44%;width:62.87%;height:3.92%"><span class="mark">1</span></span><span class="box" style="left:16.94%;top:20.63%;width:65.93%;height:5.98%"><span class="mark">2</span></span><span class="box" style="left:16.94%;top:28.47%;width:59.91%;height:3.51%"><span class="mark">3</span></span><span class="box" style="left:16.94%;top:33.83%;width:65.93%;height:4.74%"><span class="mark">4</span></span><span class="box" style="left:16.94%;top:40.84%;width:65.93%;height:7.01%"><span class="mark">5</span></span><span class="box" style="left:16.94%;top:50.33%;width:65.93%;height:15.26%"><span class="mark">6</span></span><span class="box" style="left:16.94%;top:68.28%;width:65.93%;height:15.88%"><span class="mark">7</span></span></div><figcaption><ol class="legend"><li><span class="mark">1</span><span>Date and time (can be in the past)</span></li><li><span class="mark">2</span><span>Amount</span></li><li><span class="mark">3</span><span>Fuel grade (the same as last time is preselected)</span></li><li><span class="mark">4</span><span>Whether you filled the tank</span></li><li><span class="mark">5</span><span>Cost and price (enter two of amount, cost and price; the third is calculated)</span></li><li><span class="mark">6</span><span>The car's total distance (odometer). Last value plus recorded distance is suggested</span></li><li><span class="mark">7</span><span>Station. Names you entered before are suggested</span></li></ol></figcaption></figure>
+<p>Further down are a memo and “Missed recording the previous fill-up”. If a fill-up was missed, no fuel economy is shown for that interval.</p>
+<h2>Actual fuel economy and correction</h2>
+<ul><li>Actual fuel economy uses the full-tank method: distance from one full tank to the next ÷ fuel added in between</li><li>The distance is the odometer difference if you entered it, otherwise the distance of the trips recorded in between</li><li>Difference from the estimate: compares the estimated fuel of the trips recorded in the interval with the fuel actually added</li><li>A correction is suggested from intervals (up to the last 3) where you entered the odometer and recorded at least 90% of that distance</li><li>Tap “Use” to apply the factor to that vehicle's estimated fuel economy everywhere (trips, meter, mini window, replay, exports). Your recorded data is unchanged and you can stop at any time</li><li>Using the correction is a Premium feature. Logging fill-ups, actual fuel economy and the comparison are free</li></ul>
+<nav class="pager"><a href="score.html">← Driving score and events</a><a href="index.html">Contents</a><a href="vehicles.html">Vehicles and battery →</a></nav>
+<footer>Copyright © 2026 Northeye</footer>
+</main>
+</body>
+</html>

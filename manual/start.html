@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting started — User guide — CarReplotter</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="ja" href="../ja/manual/start.html">
+</head>
+<body>
+<main class="manual">
+<header>
+  <a class="brand" href="../">CarReplotter</a>
+  <nav><a href="index.html">User guide</a><a href="../privacy.html">Privacy</a><a href="../ja/manual/start.html">日本語</a></nav>
+</header>
+<nav class="pager"><a href="index.html">Contents</a><a href="meter.html">Meter →</a></nav>
+<h1>Getting started</h1>
+<p class="lead">Plug an OBD2 adapter into your car and connect to it once from the app. After that, every drive is recorded automatically.</p>
+<h2>What you need</h2>
+<ul><li>An Android 16 or later phone or tablet</li><li>An ELM327-compatible OBD2 adapter. <strong>A Bluetooth Low Energy (BLE) adapter is recommended</strong>: it connects and starts recording automatically when you get in the car</li><li>Wi-Fi adapters also work (you connect manually)</li><li>Adapters that only support Bluetooth Classic (no BLE) cannot be used</li><li>Without an adapter, you can still record trips with GPS only (no RPM, fuel economy and so on)</li></ul>
+<div class="note">This app does not do diagnostics (reading or clearing trouble codes). It focuses on recording and replaying your drives, and on the meter.</div>
+<h2>First setup</h2>
+<p>The first time you open the app, it asks for your language and units, then for the location and nearby devices (Bluetooth) permissions. You can choose “Later” and grant them afterwards.</p>
+<figure class="shot"><div class="frame"><img src="img/en/onboarding-1.png" alt="" loading="lazy"></div><figcaption><p>About the app. Where you drove never leaves your device.</p></figcaption></figure>
+<figure class="shot"><div class="frame"><img src="img/en/onboarding-4.png" alt="" loading="lazy"></div><figcaption><p>The nearby devices permission, used to find and connect to a BLE adapter.</p></figcaption></figure>
+<h2 id="connect">Connecting to the adapter</h2>
+<p>Plug the adapter into the car's OBD2 port (usually under the dashboard on the driver's side), start the engine, then connect.</p>
+<figure class="shot"><div class="frame"><img src="img/en/connect-dialog.png" alt="" loading="lazy"><span class="box" style="left:75.46%;top:23.80%;width:18.52%;height:4.33%"><span class="mark">1</span></span><span class="box" style="left:70.37%;top:29.70%;width:23.61%;height:4.54%"><span class="mark">2</span></span><span class="box" style="left:70.37%;top:34.65%;width:23.61%;height:4.54%"><span class="mark">3</span></span></div><figcaption><ol class="legend"><li><span class="mark">1</span><span>Tap “Connect” on the meter</span></li><li><span class="mark">2</span><span>For a BLE adapter, choose “BLE adapter” and pick a nearby adapter</span></li><li><span class="mark">3</span><span>For a Wi-Fi adapter, choose “Wi-Fi adapter” and enter its address (often 192.168.0.10:35000). Join the adapter's Wi-Fi network first</span></li></ol></figcaption></figure>
+<p>The app remembers BLE adapters you have used and connects automatically when the adapter appears nearby (when you start the engine). It identifies the vehicle from its VIN (if the car reports it) and the adapter.</p>
+<nav class="pager"><a href="index.html">Contents</a><a href="meter.html">Meter →</a></nav>
+<footer>Copyright © 2026 Northeye</footer>
+</main>
+</body>
+</html>

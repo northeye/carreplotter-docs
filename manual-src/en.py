@@ -1,0 +1,398 @@
+# User guide (English). See build.py for the format. Coordinates are pixels on the original 1080×2424 screen.
+
+TEXT = {
+    "manual": "User guide",
+    "toc": "Contents",
+    "lead": "How to use CarReplotter, screen by screen. If you are new, start with “Getting started”.",
+    "home": "../",
+    "privacy": "../privacy.html",
+    "privacy_label": "Privacy",
+    "alt_lang": "ja",
+    "alt_label": "日本語",
+}
+
+PAGES = [
+    {
+        "slug": "start",
+        "title": "Getting started",
+        "summary": "What you need, first setup and connecting to the adapter",
+        "lead": "Plug an OBD2 adapter into your car and connect to it once from the app. After that, every drive is recorded automatically.",
+        "body": [
+            ("h2", "What you need"),
+            ("ul", [
+                "An Android 16 or later phone or tablet",
+                "An ELM327-compatible OBD2 adapter. <strong>A Bluetooth Low Energy (BLE) adapter is recommended</strong>: it connects and starts recording automatically when you get in the car",
+                "Wi-Fi adapters also work (you connect manually)",
+                "Adapters that only support Bluetooth Classic (no BLE) cannot be used",
+                "Without an adapter, you can still record trips with GPS only (no RPM, fuel economy and so on)",
+            ]),
+            ("note", "This app does not do diagnostics (reading or clearing trouble codes). It focuses on recording and replaying your drives, and on the meter."),
+            ("h2", "First setup"),
+            ("p", "The first time you open the app, it asks for your language and units, then for the location and nearby devices (Bluetooth) permissions. "
+                  "You can choose “Later” and grant them afterwards."),
+            ("fig", "onboarding-1", [], "About the app. Where you drove never leaves your device."),
+            ("fig", "onboarding-4", [], "The nearby devices permission, used to find and connect to a BLE adapter."),
+            ("h2", "Connecting to the adapter", "connect"),
+            ("p", "Plug the adapter into the car's OBD2 port (usually under the dashboard on the driver's side), start the engine, then connect."),
+            ("fig", "connect-dialog", [
+                (1, (815, 577, 1015, 682), "Tap “Connect” on the meter"),
+                (2, (760, 720, 1015, 830), "For a BLE adapter, choose “BLE adapter” and pick a nearby adapter"),
+                (3, (760, 840, 1015, 950), "For a Wi-Fi adapter, choose “Wi-Fi adapter” and enter its address (often 192.168.0.10:35000). Join the adapter's Wi-Fi network first"),
+            ]),
+            ("p", "The app remembers BLE adapters you have used and connects automatically when the adapter appears nearby (when you start the engine). "
+                  "It identifies the vehicle from its VIN (if the car reports it) and the adapter."),
+        ],
+    },
+    {
+        "slug": "meter",
+        "title": "Meter",
+        "summary": "Reading the meter, editing it, road mode",
+        "lead": "While connected, the meter shows speed, RPM, fuel economy and more in real time. You can freely change the items, their style, size and order.",
+        "body": [
+            ("h2", "Reading the screen"),
+            ("fig", "meter-recording", [
+                (1, (42, 185, 1038, 300), "Connection and GPS status, vehicle name and recording time. Tap to open the connection and recording controls"),
+                (2, (85, 320, 1000, 425), "Road mode (local roads / expressway)"),
+                (3, (42, 490, 1038, 975), "Meter items (round gauges)"),
+                (4, (42, 998, 1038, 1230), "A graph item (recent changes)"),
+                (5, (42, 1253, 1038, 1990), "Text, bar and other items"),
+                (6, (480, 2000, 600, 2050), "Page indicator. Swipe left or right to change pages"),
+            ]),
+            ("fig", "meter-expanded", [
+                (1, (790, 360, 1000, 445), "Disconnect from the adapter"),
+                (2, (815, 530, 1015, 635), "Stop recording (“Start recording” when not recording)"),
+                (3, (60, 215, 140, 280), "Collapse to give the meter more room"),
+            ], "The bar at the top opened while recording."),
+            ("p", "When not recording, the top of the meter shows averages for the vehicle (trip distance, time, fuel economy and so on). Tap it to choose what to show."),
+            ("h2", "Editing the meter", "edit"),
+            ("p", "<strong>Touch and hold anywhere on the meter</strong> to start editing. When not recording, you can also tap “Edit” at the top right. "
+                  "You cannot start editing while driving (stop, then touch and hold). Tap “Done” at the top right when finished."),
+            ("fig", "meter-edit", [
+                (1, (935, 195, 1040, 265), "Finish editing"),
+                (2, (42, 1090, 1038, 2080), "Items are outlined. Tap one for its settings, drag to reorder"),
+            ]),
+            ("fig", "meter-edit-2", [
+                (1, (90, 1880, 310, 1960), "Add an item"),
+                (2, (430, 1880, 615, 1960), "Add a page"),
+                (3, (625, 2006, 760, 2087), "Copy to another page, make this the expressway page and more"),
+            ], "The bottom of the screen while editing."),
+            ("fig", "meter-item", [
+                (1, (63, 690, 1000, 790), "The value to show (speed, RPM, coolant temperature, instant fuel economy and more)"),
+                (2, (63, 1035, 1000, 1335), "Style (text, graph, round, half-round, bars)"),
+                (3, (63, 1395, 1000, 1700), "Size (width × height)"),
+                (4, (63, 1745, 1020, 1995), "Gauge range"),
+            ], "Item settings. Further down are value correction and warnings (color and sound when a value goes over a limit)."),
+            ("p", "The meter layout is saved per vehicle. Use the ▾ next to the vehicle name to switch vehicles (not while recording)."),
+            ("h2", "Road mode (local roads / expressway)", "road-mode"),
+            ("p", "Switch manually with “Local roads” and “Expressway” on the meter. It never switches by itself."),
+            ("ul", [
+                "It changes the speeding threshold (choose the speeds for each mode in Settings → Driving events)",
+                "If you switch while recording, the time is saved with the trip, and the trip details show distance and fuel economy separately for local roads and expressways",
+                "New trips start in local roads mode. When recording resumes after a break as the same trip, the mode carries over",
+                "Every 2 hours of driving in expressway mode, a notification and a card on the meter suggest taking a break (stopping for 15 minutes resets the count)",
+                "With Premium, you can make an expressway meter page. Switching to expressway mode moves to that page",
+            ]),
+        ],
+    },
+    {
+        "slug": "recording",
+        "title": "Recording",
+        "summary": "Automatic recording, breaks, GPS, mini window",
+        "lead": "While connected to the adapter, recording starts when the engine starts and stops after the car has been stopped for a while. You do not need to keep the app open.",
+        "body": [
+            ("h2", "Automatic recording"),
+            ("fig", "settings-recording", [
+                (1, (42, 355, 1038, 580), "Turn automatic recording on or off"),
+                (2, (42, 690, 840, 790), "How long after stopping to stop recording"),
+                (3, (42, 855, 1038, 1120), "If you drive on within this time, the trip continues as one (a break at a rest area, for example)"),
+                (4, (42, 1165, 1038, 1395), "Record GPS from the start, even for trips that start while the app is closed (needs location “Allow all the time”)"),
+                (5, (42, 1500, 1038, 2120), "Trips shorter than this are not kept"),
+            ], "Settings → Recording."),
+            ("p", "While recording, the app shows a notification (Android requires this to keep recording in the background). You can also record manually with “Start recording” and “Stop” on the meter."),
+            ("h2", "GPS (location)", "gps"),
+            ("ul", [
+                "With location set to “Allow only while using the app”, trips that start while the app is closed cannot use GPS. "
+                "The route is recorded once you tap “Record GPS too” in the notification or open the app",
+                "Turn on “Record GPS while the app is closed” in Settings → Recording and allow location “All the time” to record the route from the start (optional)",
+                "You are notified when the device's location is off or a trip is being recorded without GPS",
+                "Distance for sections without GPS comes from the speed reported by the car",
+            ]),
+            ("h2", "Mini window", "mini"),
+            ("p", "When you switch to navigation or another app while recording, the meter shows in a small window. Choose its items in Settings → Interface."),
+            ("fig", "mini", [], "The mini window over the home screen. With Premium, it also shows events as they happen."),
+        ],
+    },
+    {
+        "slug": "trips",
+        "title": "Trips",
+        "summary": "List, filters, export and import",
+        "lead": "Your recorded trips, grouped by day. Tap a trip to open its details and replay.",
+        "body": [
+            ("fig", "trips-list", [
+                (1, (42, 320, 1038, 425), "Switch between trips and the fuel log"),
+                (2, (42, 488, 760, 573), "Filters (period, purpose, vehicle and more)"),
+                (3, (42, 740, 1038, 1085), "A trip: route thumbnail, times, vehicle and purpose, start and end, distance, time, fuel economy, driving score and costs"),
+                (4, (655, 190, 885, 265), "Import a trip sent from another device (CarReplotter format)"),
+                (5, (920, 190, 1045, 265), "Select trips to export or delete them together"),
+            ]),
+            ("fig", "trips-period", [], "Filter by period (this week, month, year or a custom range). Period filters are a Premium feature."),
+            ("fig", "trips-select", [], "Selection mode. Export the selected trips as CSV (one row per trip, handy for expense reports) or delete them."),
+            ("p", "Start and end points are shown as addresses. Save places such as home to show their names instead; the app does not look up addresses near saved places (“Save as place” in trip details, or Settings → Places &amp; addresses)."),
+            ("note", "The free plan shows your 10 most recent trips. Older trips are kept and all of them appear again with Premium."),
+        ],
+    },
+    {
+        "slug": "replay",
+        "title": "Trip details and replay",
+        "summary": "Map, playback, graph, 3D, events, summary, sharing",
+        "lead": "Replay a trip on the map and see the speed, RPM, fuel economy and more at each moment.",
+        "body": [
+            ("h2", "Map and playback", "replay"),
+            ("fig", "detail-top", [
+                (1, (0, 310, 1080, 1095), "The route, colored by value. Pins are events (tap for details and to jump there)"),
+                (2, (930, 340, 1045, 455), "Switch to the 3D map"),
+                (3, (42, 1138, 1080, 1222), "Value for colors and the graph (speed, RPM, fuel economy, throttle, engine load, coolant, altitude)"),
+                (4, (285, 1325, 795, 1460), "Play / pause, and previous / next event"),
+                (5, (42, 1490, 1038, 1610), "Seek bar. Marks above it are events, bands are breaks"),
+                (6, (870, 1620, 1038, 1725), "Playback speed (each tap: ×1, ×4, ×16, ×60)"),
+                (7, (42, 1780, 1038, 2140), "Time-series graph. Tap or slide sideways to jump to that time"),
+            ]),
+            ("p", "Coloring and graphs for throttle, engine load, coolant and altitude are Premium features (only values that were recorded appear)."),
+            ("fig", "detail-3d", [
+                (1, (930, 340, 1045, 455), "Back to the top-down map"),
+            ], "The 3D map looks down from behind the car, with the direction of travel up. Buildings appear in 3D in cities. Moving the map with your finger stops following the car; playing resumes it."),
+            ("h3", "Dashed sections"),
+            ("ul", [
+                "<strong>Dashed line</strong>: weak GPS signal (tunnels, under roofs). The points before and after are joined with a straight line",
+                "<strong>Gray dotted line</strong>: GPS was not being recorded (location permission or the device's location was off)",
+                "In both, the car moves along the line at the speed reported by the car during playback (it stays still while the car was stopped)",
+            ]),
+            ("h2", "Values, events and summary"),
+            ("fig", "detail-scroll1", [
+                (1, (42, 1095, 1038, 1320), "Values at the playback time"),
+                (2, (42, 1350, 1038, 1770), "Events: level, strength, deduction and time from the start. Tap to jump there"),
+                (3, (42, 1840, 1038, 2140), "Distance, time, estimated fuel economy, moving time, average and top speed"),
+            ]),
+            ("p", "Events are hard acceleration, hard braking, sharp turns and speeding (each with low, medium and high levels), plus impacts and breaks. "
+                  "Choose from which level they appear on the map in Settings → Driving events (see <a href=\"score.html\">Driving score and events</a>)."),
+            ("fig", "detail-scroll3", [
+                (1, (42, 1290, 1038, 1475), "Trip name"),
+                (2, (42, 1510, 1038, 1695), "Purpose (commute, business, pickup, leisure and more), costs (tolls, fuel and more) and memo"),
+                (3, (42, 1735, 1038, 1920), "The vehicle (you can change it later)"),
+                (4, (42, 1955, 1038, 2140), "Start and end. Save them as places"),
+            ]),
+            ("h2", "Export and sharing", "export"),
+            ("fig", "detail-export", [
+                (1, (188, 290, 915, 830), "KML (replay in Google Earth), GPX (for mapping apps), CSV (for spreadsheets, a value every second)"),
+                (2, (188, 830, 915, 960), "CarReplotter format, which others can open and replay in CarReplotter"),
+            ], "“Export” at the top right."),
+            ("p", "When sharing in CarReplotter format, you can trim the start and end (to hide where you live) and choose whether to include the memo and costs. The adapter name, VIN and addresses are never included."),
+        ],
+    },
+    {
+        "slug": "score",
+        "title": "Driving score and events",
+        "summary": "How the score works, eco review, event levels",
+        "lead": "Each trip gets a score out of 100, and you can see exactly which events cost how many points. It is calculated only on your device and never sent anywhere.",
+        "body": [
+            ("fig", "detail-scroll2", [
+                (1, (42, 1355, 1038, 1855), "Driving score and the count and deduction for each event type and level"),
+                (2, (120, 1630, 480, 1720), "Events at levels hidden from the map are still deducted (and labeled so)"),
+                (3, (42, 1890, 1038, 2140), "Eco review (separate from the score)"),
+            ], "Below the summary in trip details."),
+            ("h2", "How the score works"),
+            ("ul", [
+                "Start from 100 and deduct for each event: low −1, medium −3, high −6",
+                "Longer trips have more chances for events, so deductions on trips over 10 km (6.2 mi) are scaled by “10 km ÷ trip distance”",
+                "Impacts (which bumps and rough roads also cause) and breaks are not deducted",
+                "Trips under 1 km (0.6 mi) and trips without speed from the car (GPS only) get no score",
+                "The score does not depend on which levels are shown on the map. It changes only when you change the speeding thresholds",
+            ]),
+            ("h2", "Event levels", "levels"),
+            ("fig", "settings-events", [
+                (1, (42, 640, 860, 860), "Levels shown on the map, in lists and in live alerts (hide / low and up / medium and up / high only)"),
+                (2, (42, 1720, 1038, 1860), "Speeding level: from how far over the limit, one level higher if it lasts 30 seconds or more"),
+                (3, (42, 1885, 1038, 2105), "Levels of speeding to show. The speed limits for local roads and expressways are below"),
+            ], "Settings → Driving events."),
+            ("ul", [
+                "Hard acceleration: low 0.2 G (about 7 km/h, 4 mph per second), medium 0.3 G, high 0.4 G",
+                "Hard braking: low 0.25 G (about 9 km/h, 5.5 mph per second), medium 0.35 G, high 0.5 G",
+                "Sharp turn: low 0.3 G, medium 0.4 G, high 0.5 G (at 40 km/h, 25 mph or faster, from the change in GPS heading)",
+                "Speeding: over the set speed for 5 seconds or more. Low: over the limit, medium: +10 km/h (6 mph), high: +20 km/h (12 mph)",
+                "Impact: a jolt to the device (mount it in a holder)",
+            ]),
+            ("h2", "Eco review", "eco"),
+            ("p", "Fuel economy is not mixed into the score. It is compared with your other trips in the same vehicle instead."),
+            ("ul", [
+                "Fuel economy: how many percent better or worse than usual (when there are at least 3 other trips and 30 km, 19 mi in total)",
+                "Idling: the share of time stopped with the engine running",
+                "Coasting (fuel cut): the share of moving time with almost no fuel used",
+                "High RPM: the share of time at 3000 rpm or more (2500 rpm for diesel vehicles)",
+            ]),
+        ],
+    },
+    {
+        "slug": "fuel",
+        "title": "Fuel log",
+        "summary": "Actual fuel economy (full-tank method), comparison with the estimate, correction",
+        "lead": "Log your fill-ups to see your actual fuel economy between full tanks, how it compares with the estimate, and to correct the estimate.",
+        "body": [
+            ("fig", "fuel-list", [
+                (1, (42, 488, 450, 573), "Switch vehicles"),
+                (2, (42, 615, 1038, 1155), "Actual fuel economy for each fill-up, and the average (dashed)"),
+                (3, (42, 1178, 1038, 1455), "Overall actual and estimated fuel economy"),
+                (4, (42, 1478, 1038, 1845), "Suggested correction of the estimate"),
+                (5, (42, 1870, 1038, 2140), "A fill-up. Full fill-ups show the actual fuel economy for the interval and the difference from the estimate"),
+                (6, (890, 1960, 1038, 2110), "Add a fill-up"),
+                (7, (910, 195, 1040, 265), "Export as CSV"),
+            ], "“Fuel” at the top of Trips."),
+            ("h2", "Adding a fill-up"),
+            ("fig", "fuel-entry", [
+                (1, (183, 350, 862, 445), "Date and time (can be in the past)"),
+                (2, (183, 500, 895, 645), "Amount"),
+                (3, (183, 690, 830, 775), "Fuel grade (the same as last time is preselected)"),
+                (4, (183, 820, 895, 935), "Whether you filled the tank"),
+                (5, (183, 990, 895, 1160), "Cost and price (enter two of amount, cost and price; the third is calculated)"),
+                (6, (183, 1220, 895, 1590), "The car's total distance (odometer). Last value plus recorded distance is suggested"),
+                (7, (183, 1655, 895, 2040), "Station. Names you entered before are suggested"),
+            ]),
+            ("p", "Further down are a memo and “Missed recording the previous fill-up”. If a fill-up was missed, no fuel economy is shown for that interval."),
+            ("h2", "Actual fuel economy and correction"),
+            ("ul", [
+                "Actual fuel economy uses the full-tank method: distance from one full tank to the next ÷ fuel added in between",
+                "The distance is the odometer difference if you entered it, otherwise the distance of the trips recorded in between",
+                "Difference from the estimate: compares the estimated fuel of the trips recorded in the interval with the fuel actually added",
+                "A correction is suggested from intervals (up to the last 3) where you entered the odometer and recorded at least 90% of that distance",
+                "Tap “Use” to apply the factor to that vehicle's estimated fuel economy everywhere (trips, meter, mini window, replay, exports). Your recorded data is unchanged and you can stop at any time",
+                "Using the correction is a Premium feature. Logging fill-ups, actual fuel economy and the comparison are free",
+            ]),
+        ],
+    },
+    {
+        "slug": "vehicles",
+        "title": "Vehicles and battery",
+        "summary": "Adding and switching vehicles, low battery warning",
+        "lead": "Trips and meter layouts are kept separately for each vehicle. The app also watches the battery voltage of parked cars.",
+        "body": [
+            ("fig", "settings-vehicles", [
+                (1, (63, 935, 860, 1010), "Battery voltage while parked (last reading)"),
+                (2, (860, 935, 1000, 1010), "Voltage over the last 30 days (Premium)"),
+                (3, (63, 1368, 860, 1445), "Shown in red when at or below the warning level"),
+                (4, (100, 1490, 390, 1575), "Use this vehicle (the one shown on the meter)"),
+            ], "Settings → Vehicle management."),
+            ("ul", [
+                "The engine displacement is used to estimate fuel economy from intake pressure in cars without a mass air flow (MAF) sensor",
+                "Mark diesel vehicles when editing them (used to estimate fuel economy in cars that do not report their fuel type)",
+                "When you connect, the vehicle is identified from its VIN (if reported) and the adapter. For an unknown adapter, the app asks which vehicle it is",
+                "The free plan allows up to 2 vehicles",
+            ]),
+            ("h2", "Low battery warning", "battery"),
+            ("p", "The app records the voltage the adapter reads in a parked car (10 minutes or more after the engine stopped) and notifies you when it stays low."),
+            ("ul", [
+                "Low: at or below the warning level (12.2, 12.0 or 11.8 V; 12.0 V by default). Very low: 11.6 V or lower",
+                "A single reading is not enough. You are notified when two readings in a row within 24 hours are low",
+                "At most once a day per vehicle, and not again at the same level until the voltage recovers to 12.4 V",
+                "Some adapters read 0.2–0.3 V lower than the battery. Adjust the warning level if needed",
+                "Voltage while the engine is running is not used",
+            ]),
+            ("fig", "battery-history", [], "Voltage history. The dashed line is the warning level."),
+        ],
+    },
+    {
+        "slug": "settings",
+        "title": "Other settings",
+        "summary": "Interface, connection, places and addresses, backup",
+        "body": [
+            ("fig", "settings-top", [], "The settings list."),
+            ("h2", "Interface"),
+            ("p", "Dark mode, language, units (distance, fuel economy, temperature, pressure, fuel), date and time formats, first day of the week, and the mini window."),
+            ("fig", "settings-ui", []),
+            ("h2", "Connection"),
+            ("ul", [
+                "Adapters you have used. Rename or forget them",
+                "Stay connected after stopping: keeps the connection for a while after the engine stops, so recording continues right away if you restart",
+                "Auto-reconnect: keeps trying to reconnect for this long after the connection drops",
+            ]),
+            ("fig", "settings-connection", []),
+            ("h2", "Places &amp; addresses"),
+            ("p", "Manage saved places (such as home), and choose whether to show your current address on the meter and mini window. "
+                  "While shown, your current coordinates are sent to the device's address lookup about once a minute (off by default)."),
+            ("h2", "Backup", "backup"),
+            ("ul", [
+                "“Export data” saves trips, vehicles, places, the fuel log, meter layouts and settings in one file",
+                "“Restore from backup” restores from that file (it replaces your current data)",
+                "Automatic backup (Premium): writes the file regularly to a folder you choose (cloud folders such as Google Drive work too)",
+                "Android's automatic backup (to your Google account) also carries settings over to a new device",
+            ]),
+            ("fig", "settings-backup", []),
+        ],
+    },
+    {
+        "slug": "premium",
+        "title": "Premium",
+        "summary": "Differences from the free plan",
+        "lead": "Recording and replay are unlimited on the free plan. Premium (a subscription) removes these limits and adds features.",
+        "body": [
+            ("ul", [
+                "Trips: see all trips (the free plan shows the latest 10), filter by period",
+                "Meter: no limit on items and pages (free: 6 items per page, 2 pages), an expressway page",
+                "No limit on vehicles and saved places (free: 2 vehicles, 3 places)",
+                "Events shown live on the meter and mini window while recording",
+                "More values for replay coloring and graphs (throttle, engine load, coolant, altitude)",
+                "Correct the estimated fuel economy with your fill-ups",
+                "Battery voltage history",
+                "Automatic backup",
+            ]),
+            ("fig", "settings-plan", [], "Settings → Plan. Subscribe, cancel or restore purchases here."),
+        ],
+    },
+    {
+        "slug": "faq",
+        "title": "FAQ",
+        "summary": "When something is not working",
+        "body": [
+            ("h2", "Connection and recording"),
+            ("faq", [
+                ("The adapter is not found or will not connect",
+                 "Make sure the adapter supports BLE (Bluetooth Classic-only adapters cannot be used). "
+                 "Turn on the engine (or ignition) and check that the nearby devices permission is allowed. "
+                 "It cannot connect while another app is connected to the adapter. For a Wi-Fi adapter, join its Wi-Fi network first, then enter its address (often 192.168.0.10:35000)."),
+                ("Recording does not start automatically",
+                 "Only BLE adapters you have connected to from the app connect automatically when they appear nearby. Check that automatic recording is on in Settings → Recording. "
+                 "Battery saving settings that restrict the app in the background can prevent it from starting (set the app's battery usage to “Unrestricted” in Android settings)."),
+                ("The route (GPS) was not recorded",
+                 "With location set to “Allow only while using the app”, trips that start while the app is closed cannot use GPS until you open the app or tap “Record GPS too” in the notification. "
+                 "To record from the start, turn on “Record GPS while the app is closed” in Settings → Recording. Trip details draw sections without GPS recording as a gray dotted line."),
+                ("Some values such as RPM or fuel economy are missing",
+                 "Values your car does not support are not shown (the app checks what is supported when it connects). In cars without a mass air flow (MAF) sensor, set the engine displacement for the vehicle to estimate fuel economy from intake pressure."),
+                ("Will leaving the adapter plugged in drain the battery?",
+                 "When the engine stops and recording ends, the app disconnects so the adapter can sleep (it stays connected only for the “Stay connected after stopping” time). "
+                 "Some adapters still draw power on their own, so unplugging it when you will not drive for a long time is safest. The app notifies you when a parked car's battery voltage stays low."),
+            ]),
+            ("h2", "Fuel economy and score"),
+            ("faq", [
+                ("The estimated fuel economy does not match reality",
+                 "The estimate is calculated from mass air flow, or from intake pressure and displacement, and can be off depending on the car. "
+                 "Log your fill-ups to see the difference from your actual fuel economy; with Premium you can correct the estimate."),
+                ("Is my driving score sent anywhere?",
+                 "No. The score is calculated only on your device and is never sent to insurers or anyone else."),
+                ("My score seems low",
+                 "Every deduction is listed in the “Driving score” card in trip details, by event type and level. Check which events cost points. "
+                 "Events at levels hidden from the map (such as “Low”) are deducted too."),
+            ]),
+            ("h2", "Data and privacy"),
+            ("faq", [
+                ("Is where I drive sent anywhere?",
+                 "Your routes (GPS records) never leave your device. There are no accounts or servers, no ads and no usage analytics. "
+                 "Only showing the map (the area shown is sent to the map provider) and showing start and end addresses (the device's address lookup) involve your location. "
+                 "See the <a href=\"../privacy.html\">privacy policy</a> for details."),
+                ("Moving to a new phone",
+                 "Use “Export data” in Settings → Backup, then “Restore from backup” on the new phone."),
+                ("Sending a trip to someone",
+                 "In trip details, choose “Export” → “Share in CarReplotter format”. The recipient opens the file, or imports it with “Import a trip” in Trips."),
+            ]),
+            ("h2", "Contact"),
+            ("p", "Questions, bug reports and feedback: <a href=\"mailto:carreplotter@northeye.org\">carreplotter@northeye.org</a>"),
+        ],
+    },
+]

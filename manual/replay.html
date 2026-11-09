@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trip details and replay — User guide — CarReplotter</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="ja" href="../ja/manual/replay.html">
+</head>
+<body>
+<main class="manual">
+<header>
+  <a class="brand" href="../">CarReplotter</a>
+  <nav><a href="index.html">User guide</a><a href="../privacy.html">Privacy</a><a href="../ja/manual/replay.html">日本語</a></nav>
+</header>
+<nav class="pager"><a href="trips.html">← Trips</a><a href="index.html">Contents</a><a href="score.html">Driving score and events →</a></nav>
+<h1>Trip details and replay</h1>
+<p class="lead">Replay a trip on the map and see the speed, RPM, fuel economy and more at each moment.</p>
+<h2 id="replay">Map and playback</h2>
+<figure class="shot"><div class="frame"><img src="img/en/detail-top.png" alt="" loading="lazy"><span class="box" style="left:0.00%;top:12.79%;width:100.00%;height:32.38%"><span class="mark">1</span></span><span class="box" style="left:86.11%;top:14.03%;width:10.65%;height:4.74%"><span class="mark">2</span></span><span class="box" style="left:3.89%;top:46.95%;width:96.11%;height:3.47%"><span class="mark">3</span></span><span class="box" style="left:26.39%;top:54.66%;width:47.22%;height:5.57%"><span class="mark">4</span></span><span class="box" style="left:3.89%;top:61.47%;width:92.22%;height:4.95%"><span class="mark">5</span></span><span class="box" style="left:80.56%;top:66.83%;width:15.56%;height:4.33%"><span class="mark">6</span></span><span class="box" style="left:3.89%;top:73.43%;width:92.22%;height:14.85%"><span class="mark">7</span></span></div><figcaption><ol class="legend"><li><span class="mark">1</span><span>The route, colored by value. Pins are events (tap for details and to jump there)</span></li><li><span class="mark">2</span><span>Switch to the 3D map</span></li><li><span class="mark">3</span><span>Value for colors and the graph (speed, RPM, fuel economy, throttle, engine load, coolant, altitude)</span></li><li><span class="mark">4</span><span>Play / pause, and previous / next event</span></li><li><span class="mark">5</span><span>Seek bar. Marks above it are events, bands are breaks</span></li><li><span class="mark">6</span><span>Playback speed (each tap: ×1, ×4, ×16, ×60)</span></li><li><span class="mark">7</span><span>Time-series graph. Tap or slide sideways to jump to that time</span></li></ol></figcaption></figure>
+<p>Coloring and graphs for throttle, engine load, coolant and altitude are Premium features (only values that were recorded appear).</p>
+<figure class="shot"><div class="frame"><img src="img/en/detail-3d.png" alt="" loading="lazy"><span class="box" style="left:86.11%;top:14.03%;width:10.65%;height:4.74%"><span class="mark">1</span></span></div><figcaption><p>The 3D map looks down from behind the car, with the direction of travel up. Buildings appear in 3D in cities. Moving the map with your finger stops following the car; playing resumes it.</p><ol class="legend"><li><span class="mark">1</span><span>Back to the top-down map</span></li></ol></figcaption></figure>
+<h3>Dashed sections</h3>
+<ul><li><strong>Dashed line</strong>: weak GPS signal (tunnels, under roofs). The points before and after are joined with a straight line</li><li><strong>Gray dotted line</strong>: GPS was not being recorded (location permission or the device's location was off)</li><li>In both, the car moves along the line at the speed reported by the car during playback (it stays still while the car was stopped)</li></ul>
+<h2>Values, events and summary</h2>
+<figure class="shot"><div class="frame"><img src="img/en/detail-scroll1.png" alt="" loading="lazy"><span class="box" style="left:3.89%;top:45.17%;width:92.22%;height:9.28%"><span class="mark">1</span></span><span class="box" style="left:3.89%;top:55.69%;width:92.22%;height:17.33%"><span class="mark">2</span></span><span class="box" style="left:3.89%;top:75.91%;width:92.22%;height:12.38%"><span class="mark">3</span></span></div><figcaption><ol class="legend"><li><span class="mark">1</span><span>Values at the playback time</span></li><li><span class="mark">2</span><span>Events: level, strength, deduction and time from the start. Tap to jump there</span></li><li><span class="mark">3</span><span>Distance, time, estimated fuel economy, moving time, average and top speed</span></li></ol></figcaption></figure>
+<p>Events are hard acceleration, hard braking, sharp turns and speeding (each with low, medium and high levels), plus impacts and breaks. Choose from which level they appear on the map in Settings → Driving events (see <a href="score.html">Driving score and events</a>).</p>
+<figure class="shot"><div class="frame"><img src="img/en/detail-scroll3.png" alt="" loading="lazy"><span class="box" style="left:3.89%;top:53.22%;width:92.22%;height:7.63%"><span class="mark">1</span></span><span class="box" style="left:3.89%;top:62.29%;width:92.22%;height:7.63%"><span class="mark">2</span></span><span class="box" style="left:3.89%;top:71.58%;width:92.22%;height:7.63%"><span class="mark">3</span></span><span class="box" style="left:3.89%;top:80.65%;width:92.22%;height:7.63%"><span class="mark">4</span></span></div><figcaption><ol class="legend"><li><span class="mark">1</span><span>Trip name</span></li><li><span class="mark">2</span><span>Purpose (commute, business, pickup, leisure and more), costs (tolls, fuel and more) and memo</span></li><li><span class="mark">3</span><span>The vehicle (you can change it later)</span></li><li><span class="mark">4</span><span>Start and end. Save them as places</span></li></ol></figcaption></figure>
+<h2 id="export">Export and sharing</h2>
+<figure class="shot"><div class="frame"><img src="img/en/detail-export.png" alt="" loading="lazy"><span class="box" style="left:17.41%;top:11.96%;width:67.31%;height:22.28%"><span class="mark">1</span></span><span class="box" style="left:17.41%;top:34.24%;width:67.31%;height:5.36%"><span class="mark">2</span></span></div><figcaption><p>“Export” at the top right.</p><ol class="legend"><li><span class="mark">1</span><span>KML (replay in Google Earth), GPX (for mapping apps), CSV (for spreadsheets, a value every second)</span></li><li><span class="mark">2</span><span>CarReplotter format, which others can open and replay in CarReplotter</span></li></ol></figcaption></figure>
+<p>When sharing in CarReplotter format, you can trim the start and end (to hide where you live) and choose whether to include the memo and costs. The adapter name, VIN and addresses are never included.</p>
+<nav class="pager"><a href="trips.html">← Trips</a><a href="index.html">Contents</a><a href="score.html">Driving score and events →</a></nav>
+<footer>Copyright © 2026 Northeye</footer>
+</main>
+</body>
+</html>

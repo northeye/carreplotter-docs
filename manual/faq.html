@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ — User guide — CarReplotter</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="ja" href="../ja/manual/faq.html">
+</head>
+<body>
+<main class="manual">
+<header>
+  <a class="brand" href="../">CarReplotter</a>
+  <nav><a href="index.html">User guide</a><a href="../privacy.html">Privacy</a><a href="../ja/manual/faq.html">日本語</a></nav>
+</header>
+<nav class="pager"><a href="premium.html">← Premium</a><a href="index.html">Contents</a></nav>
+<h1>FAQ</h1>
+<h2>Connection and recording</h2>
+<details class="faq"><summary>The adapter is not found or will not connect</summary><div>Make sure the adapter supports BLE (Bluetooth Classic-only adapters cannot be used). Turn on the engine (or ignition) and check that the nearby devices permission is allowed. It cannot connect while another app is connected to the adapter. For a Wi-Fi adapter, join its Wi-Fi network first, then enter its address (often 192.168.0.10:35000).</div></details>
+<details class="faq"><summary>Recording does not start automatically</summary><div>Only BLE adapters you have connected to from the app connect automatically when they appear nearby. Check that automatic recording is on in Settings → Recording. Battery saving settings that restrict the app in the background can prevent it from starting (set the app's battery usage to “Unrestricted” in Android settings).</div></details>
+<details class="faq"><summary>The route (GPS) was not recorded</summary><div>With location set to “Allow only while using the app”, trips that start while the app is closed cannot use GPS until you open the app or tap “Record GPS too” in the notification. To record from the start, turn on “Record GPS while the app is closed” in Settings → Recording. Trip details draw sections without GPS recording as a gray dotted line.</div></details>
+<details class="faq"><summary>Some values such as RPM or fuel economy are missing</summary><div>Values your car does not support are not shown (the app checks what is supported when it connects). In cars without a mass air flow (MAF) sensor, set the engine displacement for the vehicle to estimate fuel economy from intake pressure.</div></details>
+<details class="faq"><summary>Will leaving the adapter plugged in drain the battery?</summary><div>When the engine stops and recording ends, the app disconnects so the adapter can sleep (it stays connected only for the “Stay connected after stopping” time). Some adapters still draw power on their own, so unplugging it when you will not drive for a long time is safest. The app notifies you when a parked car's battery voltage stays low.</div></details>
+<h2>Fuel economy and score</h2>
+<details class="faq"><summary>The estimated fuel economy does not match reality</summary><div>The estimate is calculated from mass air flow, or from intake pressure and displacement, and can be off depending on the car. Log your fill-ups to see the difference from your actual fuel economy; with Premium you can correct the estimate.</div></details>
+<details class="faq"><summary>Is my driving score sent anywhere?</summary><div>No. The score is calculated only on your device and is never sent to insurers or anyone else.</div></details>
+<details class="faq"><summary>My score seems low</summary><div>Every deduction is listed in the “Driving score” card in trip details, by event type and level. Check which events cost points. Events at levels hidden from the map (such as “Low”) are deducted too.</div></details>
+<h2>Data and privacy</h2>
+<details class="faq"><summary>Is where I drive sent anywhere?</summary><div>Your routes (GPS records) never leave your device. There are no accounts or servers, no ads and no usage analytics. Only showing the map (the area shown is sent to the map provider) and showing start and end addresses (the device's address lookup) involve your location. See the <a href="../privacy.html">privacy policy</a> for details.</div></details>
+<details class="faq"><summary>Moving to a new phone</summary><div>Use “Export data” in Settings → Backup, then “Restore from backup” on the new phone.</div></details>
+<details class="faq"><summary>Sending a trip to someone</summary><div>In trip details, choose “Export” → “Share in CarReplotter format”. The recipient opens the file, or imports it with “Import a trip” in Trips.</div></details>
+<h2>Contact</h2>
+<p>Questions, bug reports and feedback: <a href="mailto:carreplotter@northeye.org">carreplotter@northeye.org</a></p>
+<nav class="pager"><a href="premium.html">← Premium</a><a href="index.html">Contents</a></nav>
+<footer>Copyright © 2026 Northeye</footer>
+</main>
+</body>
+</html>

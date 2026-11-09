@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vehicles and battery — User guide — CarReplotter</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="ja" href="../ja/manual/vehicles.html">
+</head>
+<body>
+<main class="manual">
+<header>
+  <a class="brand" href="../">CarReplotter</a>
+  <nav><a href="index.html">User guide</a><a href="../privacy.html">Privacy</a><a href="../ja/manual/vehicles.html">日本語</a></nav>
+</header>
+<nav class="pager"><a href="fuel.html">← Fuel log</a><a href="index.html">Contents</a><a href="settings.html">Other settings →</a></nav>
+<h1>Vehicles and battery</h1>
+<p class="lead">Trips and meter layouts are kept separately for each vehicle. The app also watches the battery voltage of parked cars.</p>
+<figure class="shot"><div class="frame"><img src="img/en/settings-vehicles.png" alt="" loading="lazy"><span class="box" style="left:5.83%;top:38.57%;width:73.80%;height:3.09%"><span class="mark">1</span></span><span class="box" style="left:79.63%;top:38.57%;width:12.96%;height:3.09%"><span class="mark">2</span></span><span class="box" style="left:5.83%;top:56.44%;width:73.80%;height:3.18%"><span class="mark">3</span></span><span class="box" style="left:9.26%;top:61.47%;width:26.85%;height:3.51%"><span class="mark">4</span></span></div><figcaption><p>Settings → Vehicle management.</p><ol class="legend"><li><span class="mark">1</span><span>Battery voltage while parked (last reading)</span></li><li><span class="mark">2</span><span>Voltage over the last 30 days (Premium)</span></li><li><span class="mark">3</span><span>Shown in red when at or below the warning level</span></li><li><span class="mark">4</span><span>Use this vehicle (the one shown on the meter)</span></li></ol></figcaption></figure>
+<ul><li>The engine displacement is used to estimate fuel economy from intake pressure in cars without a mass air flow (MAF) sensor</li><li>Mark diesel vehicles when editing them (used to estimate fuel economy in cars that do not report their fuel type)</li><li>When you connect, the vehicle is identified from its VIN (if reported) and the adapter. For an unknown adapter, the app asks which vehicle it is</li><li>The free plan allows up to 2 vehicles</li></ul>
+<h2 id="battery">Low battery warning</h2>
+<p>The app records the voltage the adapter reads in a parked car (10 minutes or more after the engine stopped) and notifies you when it stays low.</p>
+<ul><li>Low: at or below the warning level (12.2, 12.0 or 11.8 V; 12.0 V by default). Very low: 11.6 V or lower</li><li>A single reading is not enough. You are notified when two readings in a row within 24 hours are low</li><li>At most once a day per vehicle, and not again at the same level until the voltage recovers to 12.4 V</li><li>Some adapters read 0.2–0.3 V lower than the battery. Adjust the warning level if needed</li><li>Voltage while the engine is running is not used</li></ul>
+<figure class="shot"><div class="frame"><img src="img/en/battery-history.png" alt="" loading="lazy"></div><figcaption><p>Voltage history. The dashed line is the warning level.</p></figcaption></figure>
+<nav class="pager"><a href="fuel.html">← Fuel log</a><a href="index.html">Contents</a><a href="settings.html">Other settings →</a></nav>
+<footer>Copyright © 2026 Northeye</footer>
+</main>
+</body>
+</html>
