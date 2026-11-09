@@ -138,6 +138,7 @@ PAGES = [
             ("fig", "trips-period", [], "Filter by period (this week, month, year or a custom range). Period filters are a Premium feature."),
             ("fig", "trips-select", [], "Selection mode. Export the selected trips as CSV (one row per trip, handy for expense reports) or delete them."),
             ("p", "Start and end points are shown as addresses. Save places such as home to show their names instead; the app does not look up addresses near saved places (“Save as place” in trip details, or Settings → Places &amp; addresses)."),
+            ("p", "Turn on “Record the weather on trips” in Settings → Places &amp; addresses to see the weather at the start, breaks and end, such as “☀️→☁️” (trip details also show the temperature)."),
             ("note", "The free plan shows your 10 most recent trips. Older trips are kept and all of them appear again with Premium."),
         ],
     },
@@ -317,6 +318,9 @@ PAGES = [
             ("h2", "Places &amp; addresses"),
             ("p", "Manage saved places (such as home), and choose whether to show your current address on the meter and mini window. "
                   "While shown, your current coordinates are sent to the device's address lookup about once a minute (off by default)."),
+            ("p", "“Record the weather on trips” (off by default) saves the weather at the start, breaks and end of each trip. "
+                  "The location of those points, rounded to about 1 km, is sent to MET Norway (the Norwegian Meteorological Institute). Your route is never sent. "
+                  "The weather is looked up on the spot; without a connection the app keeps trying for up to an hour, and otherwise nothing is saved."),
             ("h2", "Backup", "backup"),
             ("ul", [
                 "“Export data” saves trips, vehicles, places, the fuel log, meter layouts and settings in one file",
@@ -385,6 +389,7 @@ PAGES = [
                 ("Is where I drive sent anywhere?",
                  "Your routes (GPS records) never leave your device. There are no accounts or servers, no ads and no usage analytics. "
                  "Only showing the map (the area shown is sent to the map provider) and showing start and end addresses (the device's address lookup) involve your location. "
+                 "If you turn them on, the current address (the device's address lookup) and weather on trips (positions rounded to about 1 km, sent to MET Norway) do too. "
                  "See the <a href=\"../privacy.html\">privacy policy</a> for details."),
                 ("Moving to a new phone",
                  "Use “Export data” in Settings → Backup, then “Restore from backup” on the new phone."),
