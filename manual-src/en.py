@@ -47,7 +47,7 @@ PAGES = [
         "slug": "meter",
         "title": "Meter",
         "summary": "Reading the meter, editing it, road mode",
-        "lead": "While connected, the meter shows speed, RPM, fuel economy and more in real time. You can freely change the items, their style, size and order.",
+        "lead": "While connected, the meter shows speed, RPM, fuel economy and more in real time. You can freely change the items, their style, size and order within the grid.",
         "body": [
             ("h2", "Reading the screen"),
             ("fig", "meter-recording", [
@@ -62,8 +62,8 @@ PAGES = [
                 (1, (790, 360, 1000, 445), "Disconnect from the adapter"),
                 (2, (815, 530, 1015, 635), "Stop recording (“Start recording” when not recording)"),
                 (3, (60, 215, 140, 280), "Collapse to give the meter more room"),
-            ], "The bar at the top opened while recording."),
-            ("p", "When not recording, the top of the meter shows averages for the vehicle (trip distance, time, fuel economy and so on). Tap it to choose what to show."),
+            ], "The card at the top, tapped open while recording."),
+            ("p", "When not recording, the top of the meter can show figures for the vehicle (trip distance, time, fuel economy and so on). Tap it to choose what to show."),
             ("h2", "Editing the meter", "edit"),
             ("p", "<strong>Touch and hold anywhere on the meter</strong> to start editing. When not recording, you can also tap “Edit” at the top right. "
                   "You cannot start editing while driving (stop, then touch and hold). Tap “Done” at the top right when finished."),
@@ -119,7 +119,7 @@ PAGES = [
             ]),
             ("h2", "Mini window", "mini"),
             ("p", "When you switch to navigation or another app while recording, the meter shows in a small window. Choose its items in Settings → Interface."),
-            ("fig", "mini", [], "The mini window over the home screen. With Premium, it also shows events as they happen."),
+            ("fig", "mini", [], "The mini window over the home screen. With Premium, it can also show events as they happen and your current address."),
         ],
     },
     {
@@ -164,7 +164,7 @@ PAGES = [
             ], "The 3D map looks down from behind the car, with the direction of travel up. Buildings appear in 3D in cities. Moving the map with your finger stops following the car; playing resumes it."),
             ("h3", "Dashed sections"),
             ("ul", [
-                "<strong>Dashed line</strong>: weak GPS signal (tunnels, under roofs). The points before and after are joined with a straight line",
+                "<strong>Dashed line</strong>: weak GPS signal (tunnels, under roofs, under overpasses). The points before and after are joined with a straight line",
                 "<strong>Gray dotted line</strong>: GPS was not being recorded (location permission or the device's location was off)",
                 "In both, the car moves along the line at the speed reported by the car during playback (it stays still while the car was stopped)",
             ]),
@@ -187,14 +187,14 @@ PAGES = [
                 (1, (188, 290, 915, 830), "KML (replay in Google Earth), GPX (for mapping apps), CSV (for spreadsheets, a value every second)"),
                 (2, (188, 830, 915, 960), "CarReplotter format, which others can open and replay in CarReplotter"),
             ], "“Export” at the top right."),
-            ("p", "When sharing in CarReplotter format, you can trim the start and end (to hide where you live) and choose whether to include the memo and costs. The adapter name, VIN and addresses are never included."),
+            ("p", "When sharing in CarReplotter format, you can choose whether to trim the start and end (to keep places such as your home private) and whether to include the memo and costs. The adapter name, VIN and addresses are never included."),
         ],
     },
     {
         "slug": "score",
         "title": "Driving score and events",
         "summary": "How the score works, eco review, event levels",
-        "lead": "Each trip gets a score out of 100, and you can see exactly which events cost how many points. It is calculated only on your device and never sent anywhere.",
+        "lead": "Each trip gets a score out of 100, and you can see exactly which events cost how many points. It is calculated only on your device; neither the data behind it nor the result is sent anywhere.",
         "body": [
             ("fig", "detail-scroll2", [
                 (1, (42, 1355, 1038, 1855), "Driving score and the count and deduction for each event type and level"),
@@ -211,16 +211,25 @@ PAGES = [
             ]),
             ("h2", "Event levels", "levels"),
             ("fig", "settings-events", [
-                (1, (42, 640, 860, 860), "Levels shown on the map, in lists and in live alerts (hide / low and up / medium and up / high only)"),
-                (2, (42, 1720, 1038, 1860), "Speeding level: from how far over the limit, one level higher if it lasts 30 seconds or more"),
-                (3, (42, 1885, 1038, 2105), "Levels of speeding to show. The speed limits for local roads and expressways are below"),
+                (1, (42, 505, 1038, 710), "Event sound on/off"),
+                (2, (42, 865, 860, 1080), "Levels shown on the map, in lists and in live alerts (hide / low and up / medium and up / high only)"),
+                (3, (42, 1925, 1038, 2090), "Speeding level: from how far over the limit, one level higher if it lasts 30 seconds or more. The speed limits for local roads and expressways are further down"),
             ], "Settings → Driving events."),
             ("ul", [
                 "Hard acceleration: low 0.2 G (about 7 km/h, 4 mph per second), medium 0.3 G, high 0.4 G",
                 "Hard braking: low 0.25 G (about 9 km/h, 5.5 mph per second), medium 0.35 G, high 0.5 G",
                 "Sharp turn: low 0.3 G, medium 0.4 G, high 0.5 G (at 40 km/h, 25 mph or faster, from the change in GPS heading)",
                 "Speeding: over the set speed for 5 seconds or more. Low: over the limit, medium: +10 km/h (6 mph), high: +20 km/h (12 mph)",
-                "Impact: a jolt to the device (mount it in a holder)",
+                "Impact: a jolt to the device (to detect it, keep the device in a car mount while driving)",
+            ]),
+            ("h2", "Event sound", "sound"),
+            ("p", "When a new event is detected while recording, a soft chime lets you know. "
+                  "Turn it on or off with the switch at the top of Settings → Driving events (on by default; it plays once when you turn it on)."),
+            ("ul", [
+                "It plays only for levels shown on the map (not for levels set to “Hide”)",
+                "Even for events that last, such as speeding, it plays only once",
+                "It plays as the same kind of sound as navigation guidance",
+                "Like showing events live while recording, it is a Premium feature",
             ]),
             ("h2", "Eco review", "eco"),
             ("p", "Fuel economy is not mixed into the score. It is compared with your other trips in the same vehicle instead."),
@@ -305,6 +314,7 @@ PAGES = [
         "summary": "Interface, connection, places and addresses, backup",
         "body": [
             ("fig", "settings-top", [], "The settings list."),
+            ("p", "Tap “User manual” in the list to open this manual in your browser."),
             ("h2", "Interface"),
             ("p", "Dark mode, language, units (distance, fuel economy, temperature, pressure, fuel), date and time formats, first day of the week, and the mini window."),
             ("fig", "settings-ui", []),
@@ -316,8 +326,9 @@ PAGES = [
             ]),
             ("fig", "settings-connection", []),
             ("h2", "Places &amp; addresses"),
-            ("p", "Manage saved places (such as home), and choose whether to show your current address on the meter and mini window. "
-                  "While shown, your current coordinates are sent to the device's address lookup about once a minute (off by default)."),
+            ("p", "Manage saved places (such as home), and choose whether to show your current address on the meter. "
+                  "If you put “Location” on the meter and turn this on, your current coordinates are sent to the device's address lookup about once a minute while recording with that screen open (off by default). "
+                  "The address in the mini window is set in Settings → Interface (Premium)."),
             ("p", "“Record the weather on trips” (off by default) saves the weather at the start, breaks and end of each trip. "
                   "The location of those points, rounded to about 1 km, is sent to MET Norway (the Norwegian Meteorological Institute). Your route is never sent. "
                   "The weather is looked up on the spot; without a connection the app keeps trying for up to an hour, and otherwise nothing is saved."),
@@ -341,7 +352,7 @@ PAGES = [
                 "Trips: see all trips (the free plan shows the latest 10), filter by period",
                 "Meter: no limit on items and pages (free: 6 items per page, 2 pages), an expressway page",
                 "No limit on vehicles and saved places (free: 2 vehicles, 3 places)",
-                "Events shown live on the meter and mini window while recording",
+                "Events shown live on the meter and mini window while recording, with a chime",
                 "More values for replay coloring and graphs (throttle, engine load, coolant, altitude)",
                 "Correct the estimated fuel economy with your fill-ups",
                 "Battery voltage history",

@@ -15,18 +15,18 @@
 </header>
 <nav class="pager"><a href="index.html">目次</a><a href="meter.html">メーター →</a></nav>
 <h1>はじめに</h1>
-<p class="lead">OBD2 アダプターを車につなぎ、アプリから一度接続すれば、あとは乗るたびに自動で記録されます。</p>
+<p class="lead">OBD2 アダプターを車に装着し、アプリから一度接続すれば、あとは乗るたびに自動で記録されます。</p>
 <h2>必要なもの</h2>
-<ul><li>Android 16 以上のスマートフォン・タブレット</li><li>ELM327 互換の OBD2 アダプター。<strong>おすすめは Bluetooth Low Energy（BLE）型</strong>です。車に近づくと自動で接続し、記録を始めます</li><li>Wi-Fi 型のアダプターも使えます（接続は手動です）</li><li>Bluetooth Classic だけのアダプター（BLE に対応していないもの）は使えません</li><li>アダプターがなくても、GPS だけで走行を記録できます（回転数・燃費などは出ません）</li></ul>
-<div class="note">このアプリは故障診断（故障コードの読み取り・消去）はしません。運転の記録とリプレイ、メーターに絞っています。</div>
+<ul><li>Android 16 以上のスマートフォンかタブレット端末</li><li>ELM327 互換の OBD2 アダプター。<strong>おすすめは Bluetooth Low Energy（BLE）型</strong>です。車に近づくと自動で接続し記録を始めることができます</li><li>Wi-Fi 型のアダプターも使えます（接続は手動となります）</li><li>Bluetooth Classic だけのアダプター（BLE に対応していないもの）は使えません</li><li>アダプターがなくても、GPS だけで走行を記録することもできます（回転数・燃費などは出ません）</li></ul>
+<div class="note">このアプリは故障診断（故障コードの読み取り・消去など）はしません。運転の記録とリプレイ、メーター表示に絞っています。</div>
 <h2>最初の案内</h2>
-<p>はじめて開くと、言語・単位と、位置情報・付近のデバイス（Bluetooth）の許可を順に聞きます。許可は「あとで」にして、あとから設定することもできます。</p>
-<figure class="shot"><div class="frame"><img src="../../manual/img/ja/onboarding-1.png" alt="" loading="lazy"></div><figcaption><p>アプリの説明。走った場所の記録は端末の外に送りません。</p></figcaption></figure>
-<figure class="shot"><div class="frame"><img src="../../manual/img/ja/onboarding-4.png" alt="" loading="lazy"></div><figcaption><p>付近のデバイスの許可。BLE のアダプターを探して接続するのに使います。</p></figcaption></figure>
+<p>はじめて起動したときに、言語や単位の設定、位置情報及び付近のデバイス（Bluetooth）の許可を順に求めます。許可は「あとで」にしてあとから設定することもできます。</p>
+<figure class="shot"><div class="frame"><img src="../../manual/img/ja/onboarding-1.png" alt="" loading="lazy"></div><figcaption><p>アプリの説明です。走った場所の記録は端末の外に送りません。</p></figcaption></figure>
+<figure class="shot"><div class="frame"><img src="../../manual/img/ja/onboarding-4.png" alt="" loading="lazy"></div><figcaption><p>付近のデバイスの許可を求めます。BLE のアダプターを探して接続するのに使います。</p></figcaption></figure>
 <h2 id="connect">アダプターに接続する</h2>
-<p>アダプターを車の OBD2 端子（運転席の足元にあることが多い）に挿し、エンジンをかけてから接続します。</p>
-<figure class="shot"><div class="frame"><img src="../../manual/img/ja/connect-dialog.png" alt="" loading="lazy"><span class="box" style="left:75.46%;top:23.80%;width:18.52%;height:4.33%"><span class="mark">1</span></span><span class="box" style="left:62.69%;top:29.70%;width:31.30%;height:4.54%"><span class="mark">2</span></span><span class="box" style="left:62.69%;top:34.65%;width:31.30%;height:4.54%"><span class="mark">3</span></span></div><figcaption><ol class="legend"><li><span class="mark">1</span><span>メーターの「接続」を押します</span></li><li><span class="mark">2</span><span>BLE のアダプターは「BLEアダプター」から、近くのアダプターを選びます</span></li><li><span class="mark">3</span><span>Wi-Fi 型は「Wi-Fi アダプター」から、アダプターの住所（多くは 192.168.0.10:35000）を入れます。先にスマートフォンをアダプターの Wi-Fi につないでおきます</span></li></ol></figcaption></figure>
-<p>一度つないだ BLE のアダプターは覚えておき、次からはアダプターが近くに現れたとき（エンジンをかけたとき）に自動で接続します。車両は、車台番号（取れる車のみ）とアダプターで自動で判別します。</p>
+<p>アダプターを車の OBD2 端子（運転席の足元にあることが多い）に装着し、エンジンをかけてから接続します。</p>
+<figure class="shot"><div class="frame"><img src="../../manual/img/ja/connect-dialog.png" alt="" loading="lazy"><span class="box" style="left:75.46%;top:23.80%;width:18.52%;height:4.33%"><span class="mark">1</span></span><span class="box" style="left:62.69%;top:29.70%;width:31.30%;height:4.54%"><span class="mark">2</span></span><span class="box" style="left:62.69%;top:34.65%;width:31.30%;height:4.54%"><span class="mark">3</span></span></div><figcaption><ol class="legend"><li><span class="mark">1</span><span>メーターの「接続」をタップします</span></li><li><span class="mark">2</span><span>BLE のアダプターは「BLEアダプター」から、近くのアダプターを選びます</span></li><li><span class="mark">3</span><span>Wi-Fi 型は「Wi-Fi アダプター」から、アダプターのアドレス（多くは 192.168.0.10:35000）を入力します。先に端末をアダプターの Wi-Fi につないでおきます</span></li></ol></figcaption></figure>
+<p>一度つないだ BLE のアダプターは覚えておき、次からはアダプターに近づいたとき（エンジンをかけたとき）に自動で接続します。車両は、車台番号（取れる車のみ）とアダプターで自動で判別します。</p>
 <nav class="pager"><a href="index.html">目次</a><a href="meter.html">メーター →</a></nav>
 <footer>Copyright © 2026 Northeye</footer>
 </main>
