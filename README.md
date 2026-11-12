@@ -16,7 +16,7 @@ A page is generated for every language in `translations/site/`; untranslated tex
 
 To change a text: edit `site/en.json` and `site/ja.json` in carreplotter-i18n and push to main. The workflow there
 (`.github/workflows/site.yml`) asks this repository to rebuild: `.github/workflows/translations.yml` updates the submodule,
-runs `src/build.py`, commits the result and requests a Pages build. Pull before working here, since the workflow commits to main.
+runs `src/build.py` and commits the result (the push publishes it to Pages). Pull before working here, since the workflow commits to main.
 To do it by hand: `git submodule update --remote translations`, `python3 src/build.py`, and commit the result together with the submodule.
 
 The privacy policy is written by hand in English and Japanese (it is a legal document and is not translated in carreplotter-i18n).

@@ -1,4 +1,4 @@
-# 翻訳（carreplotter-i18n の site/）が更新されたら、サブモジュールを最新にしてページを作り直し、コミットして公開する。
+# 翻訳（carreplotter-i18n の site/）が更新されたら、サブモジュールを最新にしてページを作り直し、コミットする（push すると Pages が公開し直す）。
 # carreplotter-i18n の .github/workflows/site.yml が repository_dispatch（translations-updated）で呼ぶ。手で動かすこともできる。
 name: translations
 on:
@@ -7,7 +7,6 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
-  pages: write
 concurrency:
   group: translations
   cancel-in-progress: false
@@ -15,7 +14,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: true
       - name: Update the translations
@@ -23,7 +22,6 @@ jobs:
       - name: Build
         run: python3 src/build.py
       - name: Commit and push
-        id: commit
         run: |
           git add -A
           if git diff --cached --quiet; then
@@ -33,11 +31,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "翻訳を更新（carreplotter-i18n $(git -C translations rev-parse --short HEAD)）"
+          # この push で Pages のビルド（pages-build-deployment）も動く
           git push
-          echo "pushed=true" >> "$GITHUB_OUTPUT"
-      # GITHUB_TOKEN での push では Pages のビルドが動かないことがあるので、明示して頼む
-      - name: Request a Pages build
-        if: steps.commit.outputs.pushed == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "::warning::Could not request a Pages build"
