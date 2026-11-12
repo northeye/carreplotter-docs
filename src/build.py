@@ -167,7 +167,7 @@ def top(lang):
 
 <p class="store"><a class="play" href="{play}"><img src="{p.root(badge)}" alt="{html.escape(t("top.play_badge_alt"))}"></a></p>
 
-<footer>Copyright © 2026 Northeye</footer>
+<footer>Copyright © 2026 Northeye Labs</footer>
 </main>
 </body>
 </html>
@@ -240,7 +240,7 @@ def manual_page(p, title, inner):
   {p.nav(t("manual.title"), "index.html")}
 </header>
 {inner}
-<footer>Copyright © 2026 Northeye</footer>
+<footer>Copyright © 2026 Northeye Labs</footer>
 </main>
 </body>
 </html>
