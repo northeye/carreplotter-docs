@@ -272,7 +272,7 @@ def manual_pages(lang):
 
     for i, page in enumerate(pages):
         p = Page(lang, f"manual/{page['slug']}.html")
-        lead = f'<p class="lead">{p.t(f"manual.{page['slug']}.lead")}</p>\n' if page.get("lead") else ""
+        lead = '<p class="lead">' + p.t(f"manual.{page['slug']}.lead") + "</p>\n" if page.get("lead") else ""
         inner = f'{pager(p.t, i)}\n<h1>{title(page)}</h1>\n{lead}{body_html(p, page["body"])}\n{pager(p.t, i)}'
         manual_page(p, title(page), inner)
     return len(pages) + 1
