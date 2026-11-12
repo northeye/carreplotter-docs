@@ -9,7 +9,7 @@
 - スクリーンショットは manual/img/<言語>/<名前>.png。その言語のものがなければ英語のものを使う
   （撮影は InfoDrive の tools/png_half.py で半分に縮めたもの）
 - 画像に重ねる番号と枠は、元の画面（1080×2424）の座標を割合にして HTML で重ねる（画像には描き込まない）
-- プライバシーポリシー（privacy.html・ja/privacy.html）は法的な文書なので翻訳に出さず、手で書く。
+- プライバシーポリシー（privacy.html・ja/privacy.html）と利用規約（terms.html・ja/terms.html）は法的な文書なので翻訳に出さず、手で書く。
   その言語のものがなければ英語のものにリンクする
 - 文言の {privacy}・{email}・{github} は、リンク先などに置き換える
 
