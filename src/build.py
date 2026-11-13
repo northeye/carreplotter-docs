@@ -9,7 +9,7 @@
 - スクリーンショットは manual/img/<言語>/<名前>.png。その言語のものがなければ英語のものを使う
   （撮影は InfoDrive の tools/png_half.py で半分に縮めたもの）
 - 画像に重ねる番号と枠は、元の画面（1080×2424）の座標を割合にして HTML で重ねる（画像には描き込まない）
-- プライバシーポリシー（privacy.html・ja/privacy.html）と利用規約（terms.html・ja/terms.html）は法的な文書なので翻訳に出さず、手で書く。
+- プライバシーポリシー（privacy.html・ja/privacy.html）と利用規約（terms.html・ja/terms.html）、特定商取引法に基づく表記（ja/tokushoho.html。日本語だけ）は法的な文書なので翻訳に出さず、手で書く。
   その言語のものがなければ英語のものにリンクする
 - 文言の {privacy}・{email}・{github} は、リンク先などに置き換える
 
@@ -82,9 +82,21 @@ class Page:
         return "../" * self.path.count("/") + target
 
     def privacy_href(self):
-        if os.path.exists(os.path.join(ROOT, lang_dir(self.lang) + "privacy.html")):
-            return self.own("privacy.html")
-        return self.root("privacy.html")
+        return self.legal_href("privacy.html")
+
+    def legal_href(self, name):
+        """手で書いた法的な文書（privacy.html・terms.html）への相対パス。この言語の版がなければ英語の版。"""
+        if os.path.exists(os.path.join(ROOT, lang_dir(self.lang) + name)):
+            return self.own(name)
+        return self.root(name)
+
+    def footer(self):
+        """ページの下：利用規約・プライバシーポリシー・特定商取引法に基づく表記（日本語だけ）へのリンクと著作権表示。"""
+        docs = [("terms.html", "footer.terms"), ("privacy.html", "footer.privacy")]
+        if os.path.exists(os.path.join(ROOT, lang_dir(self.lang) + "tokushoho.html")):
+            docs.append(("tokushoho.html", "footer.tokushoho"))
+        links = " · ".join(f'<a href="{self.legal_href(name)}">{self.t(key)}</a>' for name, key in docs)
+        return f"<footer><p>{links}</p><p>Copyright © 2026 Northeye Labs</p></footer>"
 
     def other_langs(self):
         """ほかの言語の同じページへのリンク（hreflang と、ヘッダーの言語の切り替え）。"""
@@ -167,7 +179,7 @@ def top(lang):
 
 <p class="store"><a class="play" href="{play}"><img src="{p.root(badge)}" alt="{html.escape(t("top.play_badge_alt"))}"></a></p>
 
-<footer>Copyright © 2026 Northeye Labs</footer>
+{p.footer()}
 </main>
 </body>
 </html>
@@ -240,7 +252,7 @@ def manual_page(p, title, inner):
   {p.nav(t("manual.title"), "index.html")}
 </header>
 {inner}
-<footer>Copyright © 2026 Northeye Labs</footer>
+{p.footer()}
 </main>
 </body>
 </html>
