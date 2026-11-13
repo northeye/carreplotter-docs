@@ -141,7 +141,20 @@ def top(lang):
     if not os.path.exists(os.path.join(ROOT, badge)):
         badge = "google-play-badge.svg"
     play = PLAY if lang == "en" else f"{PLAY}&amp;hl={lang}"
-    features = "\n".join(f"  <li>{t(f'top.features.{i}')}</li>" for i in range(1, 7))
+    # 機能ごとに画面と説明（img/top/<言語>/。その言語の画面がなければ英語）
+    shots = "en" if not os.path.isdir(os.path.join(ROOT, "img", "top", lang)) else lang
+
+    def feature(key, images):
+        imgs = "".join(f'<img src="{p.root(f"img/top/{shots}/{name}.jpg")}" alt="" loading="lazy">' for name in images)
+        return (f'<section class="feature"><div class="shots">{imgs}</div>'
+                f'<div class="text"><h3>{t(f"top.f.{key}.title")}</h3><p>{t(f"top.f.{key}.body")}</p></div></section>')
+
+    feature_list = "\n".join(feature(k, imgs) for k, imgs in (
+        ("replay", ["replay"]), ("3d", ["3d"]), ("trips", ["trips"]), ("score", ["score"]),
+        ("meter", ["meter", "mini"]), ("fuel", ["fuel"]),
+    ))
+    # 画面のない機能は短い箇条書きで（自動で記録・複数の車両・書き出しとバックアップ）
+    features = "\n".join(f"  <li>{t(f'top.features.{i}')}</li>" for i in (1, 5, 6))
     p.write(f"""{p.head("CarReplotter", t("top.description"))}
 <body>
 <main>
@@ -158,8 +171,11 @@ def top(lang):
 </div>
 <p class="lead">{t("top.lead")}</p>
 
+<h2 class="features-heading">{t("top.features.heading")}</h2>
+{feature_list}
+
 <div class="card">
-<h2>{t("top.features.heading")}</h2>
+<h2>{t("top.more.heading")}</h2>
 <ul>
 {features}
 </ul>

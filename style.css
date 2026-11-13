@@ -79,3 +79,20 @@ details.faq { background: var(--surface); border: 1px solid var(--border); borde
 details.faq summary { cursor: pointer; font-weight: 600; }
 details.faq div { margin-top: 8px; }
 @media (max-width: 640px) { figure.shot .frame { width: calc(100% - 12px); } }
+/* トップページ：機能ごとの画面と説明（左右を交互に。狭い画面では縦に積む） */
+h2.features-heading { margin-top: 48px; }
+section.feature { display: flex; gap: 28px; align-items: center; margin: 28px 0 40px; }
+section.feature:nth-of-type(even) { flex-direction: row-reverse; }
+section.feature .shots { display: flex; gap: 12px; flex: none; }
+section.feature .shots img { display: block; width: 200px; height: auto; border-radius: 18px; border: 1px solid var(--border); background: #000; }
+section.feature .shots img + img { width: 160px; }
+section.feature .text { flex: 1; }
+section.feature h3 { font-size: 1.2rem; margin: 0 0 6px; }
+section.feature p { margin: 0; color: var(--muted); }
+@media (max-width: 640px) {
+  section.feature, section.feature:nth-of-type(even) { flex-direction: column; align-items: stretch; gap: 14px; }
+  section.feature .shots { justify-content: center; }
+  section.feature .shots img { width: 62%; max-width: 260px; }
+  section.feature .shots img + img { width: 46%; }
+}
+
