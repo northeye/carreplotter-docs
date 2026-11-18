@@ -26,6 +26,7 @@ import importlib.util
 import json
 import os
 import posixpath
+import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "translations", "site")
@@ -136,8 +137,11 @@ class Page:
 </head>"""
 
     def nav(self, manual_label, manual_href):
+        """上のメニュー：使い方・動作確認済みアダプター・よくある質問・プライバシー・ほかの言語。"""
         langs = "".join(f'<a href="{href}">{LANGUAGE_NAMES.get(lang, lang)}</a>' for lang, href in self.other_langs())
-        return f'<nav><a href="{manual_href}">{manual_label}</a><a href="{self.privacy_href()}">{self.t("nav.privacy")}</a>{langs}</nav>'
+        links = [(manual_href, manual_label), (self.own("adapters.html"), self.t("nav.adapters")),
+                 (self.own("manual/faq.html"), self.t("nav.faq")), (self.privacy_href(), self.t("nav.privacy"))]
+        return "<nav>" + "".join(f'<a href="{href}">{label}</a>' for href, label in links) + langs + "</nav>"
 
     def write(self, content):
         out = os.path.join(ROOT, lang_dir(self.lang) + self.path)
@@ -155,11 +159,13 @@ def top(lang):
     if not os.path.exists(os.path.join(ROOT, badge)):
         badge = "google-play-badge.svg"
     play = PLAY if lang == "en" else f"{PLAY}&amp;hl={lang}"
+    store = f'<p class="store"><a class="play" href="{play}"><img src="{p.root(badge)}" alt="{html.escape(t("top.play_badge_alt"))}"></a></p>'
     # 機能ごとに画面と説明（img/top/<言語>/。その言語の画面がなければ英語）
     shots = "en" if not os.path.isdir(os.path.join(ROOT, "img", "top", lang)) else lang
 
     def feature(key, images):
-        imgs = "".join(f'<img src="{p.root(f"img/top/{shots}/{name}.jpg")}" alt="" loading="lazy">' for name in images)
+        alt = html.escape(re.sub(r"<[^>]+>", "", t(f"top.f.{key}.title")), quote=True)
+        imgs = "".join(f'<img src="{p.root(f"img/top/{shots}/{name}.jpg")}" alt="{alt}" loading="lazy">' for name in images)
         return (f'<section class="feature"><div class="shots">{imgs}</div>'
                 f'<div class="text"><h3>{t(f"top.f.{key}.title")}</h3><p>{t(f"top.f.{key}.body")}</p></div></section>')
 
@@ -184,6 +190,7 @@ def top(lang):
   <div class="hero-text"><img class="icon" src="{p.root("app-icon.png")}" alt=""><h1><span>{t("top.hero_1")}</span>{"" if lang in ("ja", "zh") else " "}<span>{t("top.hero_2")}</span></h1></div>
 </div>
 <p class="lead">{t("top.lead")}</p>
+{store}
 
 <h2 class="features-heading">{t("top.features.heading")}</h2>
 {feature_list}
@@ -197,6 +204,15 @@ def top(lang):
 </div>
 
 <div class="card">
+<h2>{t("top.pricing.heading")}</h2>
+<div class="plans">
+<div class="plan"><h3>{t("top.pricing.free.title")}</h3><p>{t("top.pricing.free.body")}</p></div>
+<div class="plan premium"><h3>{t("top.pricing.premium.title")}</h3><p>{t("top.pricing.premium.body")}</p></div>
+</div>
+<p class="price">{t("top.pricing.price")}</p>
+</div>
+
+<div class="card">
 <h2>{t("top.data.heading")}</h2>
 <p>{t("top.data.body")}</p>
 </div>
@@ -207,7 +223,7 @@ def top(lang):
 <p>{t("top.support.translate")}</p>
 </div>
 
-<p class="store"><a class="play" href="{play}"><img src="{p.root(badge)}" alt="{html.escape(t("top.play_badge_alt"))}"></a></p>
+{store}
 
 {p.footer()}
 </main>
@@ -252,6 +268,7 @@ def adapters_page(lang):
 </header>
 <h1>{t("adapters.title")}</h1>
 <p class="lead">{t("adapters.lead")}</p>
+<p class="ads"><span class="tag">{t("adapters.ads.tag")}</span>{t("adapters.ads")}{(" " + t("adapters.ads.amazon")) if t("adapters.ads.amazon") else ""}</p>
 <div class="table-scroll">
 <table class="adapters">
 <thead><tr><th>{t("adapters.col.name")}</th><th>{t("adapters.col.type")}</th><th>{t("adapters.col.sleep")}</th><th>{t("adapters.col.recommended")}</th><th>{t("adapters.col.user")}</th><th>{t("adapters.col.buy")}</th></tr></thead>
@@ -292,7 +309,8 @@ def figure(p, name, marks, caption):
     if isinstance(marks, dict):
         marks = marks[shot]
     marks = [(n, c[shot] if isinstance(c, dict) else c, key) for n, c, key in marks]
-    parts = [f'<figure class="shot"><div class="frame"><img src="{p.root(f"manual/img/{shot}/{name}.png")}" alt="" loading="lazy">']
+    alt = html.escape(re.sub(r"<[^>]+>", "", p.t(caption)), quote=True) if caption else ""
+    parts = [f'<figure class="shot"><div class="frame"><img src="{p.root(f"manual/img/{shot}/{name}.png")}" alt="{alt}" loading="lazy">']
     for n, (x1, y1, x2, y2), _ in marks:
         style = f"left:{x1 / W * 100:.2f}%;top:{y1 / H * 100:.2f}%;width:{(x2 - x1) / W * 100:.2f}%;height:{(y2 - y1) / H * 100:.2f}%"
         parts.append(f'<span class="box" style="{style}"><span class="mark">{n}</span></span>')

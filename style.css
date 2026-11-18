@@ -111,3 +111,19 @@ ul.notes { color: var(--muted); font-size: 0.9rem; }
 table.adapters td.unknown { color: var(--muted); }
 table.adapters td.mark, table.adapters th:nth-child(4) { text-align: center; color: var(--accent); }
 a.button { display: inline-block; background: var(--accent); color: #fff; padding: 8px 18px; border-radius: 999px; text-decoration: none; font-weight: 600; }
+
+/* トップページの料金 */
+nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+nav a { margin-left: 0; }
+.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.plan { border: 1px solid var(--border); border-radius: 12px; padding: 4px 16px 8px; }
+.plan h3 { margin: 12px 0 4px; font-size: 1rem; }
+.plan p { margin: 0 0 8px; font-size: 0.95rem; }
+.plan.premium { border-color: var(--accent); }
+.plan.premium h3 { color: var(--accent); }
+p.price { color: var(--muted); font-size: 0.9rem; }
+@media (max-width: 640px) { .plans { grid-template-columns: 1fr; } }
+
+/* 広告の表記 */
+p.ads { color: var(--muted); font-size: 0.9rem; }
+p.ads .tag { display: inline-block; border: 1px solid var(--muted); border-radius: 4px; padding: 0 6px; margin-right: 8px; font-size: 0.8rem; line-height: 1.5; }
