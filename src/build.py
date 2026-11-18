@@ -10,7 +10,8 @@
   name 製品名、site 公式サイト（空ならリンクにしない）、types 接続（BLE / Wi-Fi）、sleep「切断時にスリープ」で眠って起きるか、
   developer 開発者が試したか（false ならユーザーの報告だけで、製品名の下にその旨を出す）。
   user_reports ユーザーの報告の issue の番号（ユーザー確認の列にリンクで出す）。sleep が null なら「未確認」。おすすめ（●）は sleep が true のもの。
-  note 補足の文言のキー、buy.amazon は言語ごと（なければ en）、buy.aliexpress は 1 つ。購入リンクが 1 つもなければ「—」
+  note 補足の文言のキー、buy.official（公式ストア）と buy.amazon は文字列か言語ごと（なければ en）、
+  buy.aliexpress は 1 つ。この順に出す。購入リンクが 1 つもなければ「—」
 - スクリーンショットは manual/img/<言語>/<名前>.png。その言語のものがなければ英語のものを使う
   （撮影は InfoDrive の tools/png_half.py で半分に縮めたもの）
 - 画像に重ねる番号と枠は、元の画面（1080×2424）の座標を割合にして HTML で重ねる（画像には描き込まない）
@@ -297,8 +298,14 @@ def adapters_page(lang):
         # ユーザー確認：報告の issue の番号ごとにリンク
         reports = " ".join(f'<a href="{ISSUES}/{n}" rel="noopener">#{n}</a>' for n in a.get("user_reports", [])) or "—"
         # Amazon は国ごとに違うので言語ごと（その言語がなければ英語の版）。AliExpress は 1 つ
-        amazon = a["buy"].get("amazon", {})
-        stores = [("Amazon", amazon.get(lang) or amazon.get("en") or ""), ("AliExpress", a["buy"].get("aliexpress") or "")]
+        # 公式ストアと Amazon は言語ごとにも書ける（文字列なら全言語で同じ。言語ごとなら、その言語がなければ英語の版）。AliExpress は 1 つ
+        def by_lang(value):
+            return value if isinstance(value, str) else (value.get(lang) or value.get("en") or "")
+        stores = [
+            (t("adapters.store.official"), by_lang(a["buy"].get("official", ""))),
+            ("Amazon", by_lang(a["buy"].get("amazon", ""))),
+            ("AliExpress", a["buy"].get("aliexpress") or ""),
+        ]
         buy = " / ".join(f'<a href="{html.escape(url)}" rel="noopener sponsored">{store}</a>' for store, url in stores if url) or "—"
         rows.append(f'<tr><td>{name}</td><td>{" / ".join(a["types"])}</td>'
                     f'<td class="{sleep_state}">{sleep}</td><td class="mark">{recommended}</td><td>{reports}</td><td>{buy}</td></tr>')
