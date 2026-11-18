@@ -1,5 +1,6 @@
 # src/（アダプターの一覧・マニュアルの構成・生成スクリプト）が main に入ったら、ページを作り直してコミットする
 # （push すると Pages が公開し直す）。翻訳はサブモジュールが指している版のまま（更新は translations.yml）。
+# main はほかの push で進んでいることがあるので、最新の main から作り直し、push が断られたらやり直す。
 name: build
 on:
   push:
@@ -14,21 +15,32 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
     steps:
       - uses: actions/checkout@v7
         with:
+          ref: main
           submodules: true
-      - name: Build
-        run: python3 src/build.py
-      - name: Commit and push
+      - name: Build, commit and push
         run: |
-          git add -A
-          if git diff --cached --quiet; then
-            echo "No changes"
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "ページを作り直す（$(git log -1 --format=%h ${{ github.sha }}) の src/ の変更）"
-          git pull --rebase
-          git push
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            git submodule update --init
+            python3 src/build.py
+            git add -A
+            if git diff --cached --quiet; then
+              echo "No changes"
+              exit 0
+            fi
+            git commit -m "ページを作り直す（$(git rev-parse --short origin/main) までの src/ の変更）"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "main が進んでいたので、最新の main から作り直す（$attempt 回目）"
+            sleep 5
+          done
+          exit 1
