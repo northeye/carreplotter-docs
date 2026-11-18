@@ -8,6 +8,8 @@
 - マニュアルの構成（ページの並び・見出し・段落・画像と番号の座標）は src/manual.py
 - 動作確認済みアダプターの一覧（adapters.html の表。製品名・リンクなど訳さないもの）は src/adapters.json。
   name 製品名、site 公式サイト（空ならリンクにしない）、types 接続（BLE / Wi-Fi）、sleep「切断時にスリープ」で眠って起きるか、
+  developer 開発者が試したか（false ならユーザーの報告だけで、製品名の下にその旨を出す）。
+  user_reports ユーザーの報告の issue の番号（ユーザー確認の列にリンクで出す）。sleep が null なら「未確認」。おすすめ（●）は sleep が true のもの。
   note 補足の文言のキー、buy.amazon は言語ごと（なければ en）、buy.aliexpress は 1 つ。購入リンクが 1 つもなければ「—」
 - スクリーンショットは manual/img/<言語>/<名前>.png。その言語のものがなければ英語のものを使う
   （撮影は InfoDrive の tools/png_half.py で半分に縮めたもの）
@@ -31,6 +33,8 @@ W, H = 1080, 2424
 EMAIL = "carreplotter@northeye.org"
 GITHUB = "https://github.com/northeye/carreplotter-i18n"
 PLAY = "https://play.google.com/store/apps/details?id=org.northeye.replotter"
+# アダプターの動作報告の受け付け（このリポジトリの issue。テンプレートは .github/ISSUE_TEMPLATE/adapter-report.yml）
+ISSUES = "https://github.com/northeye/carreplotter-docs/issues"
 
 # 言語の切り替えに出す名前（その言語での呼び名）
 LANGUAGE_NAMES = {
@@ -224,13 +228,20 @@ def adapters_page(lang):
             name = f'<a href="{html.escape(a["site"])}" rel="noopener">{name}</a>'
         if a.get("note"):
             name += f'<span class="sub">{t(a["note"])}</span>'
-        sleep = t("adapters.sleep.yes") if a["sleep"] else t("adapters.sleep.no")
+        if not a.get("developer", True):
+            name += f'<span class="sub">{t("adapters.user_only")}</span>'
+        # スリープ：true 対応・false 非対応・null 未確認。おすすめはスリープに対応しているもの
+        sleep_state = {True: "yes", False: "no"}.get(a.get("sleep"), "unknown")
+        sleep = t(f"adapters.sleep.{sleep_state}")
+        recommended = "●" if a.get("sleep") is True else ""
+        # ユーザー確認：報告の issue の番号ごとにリンク
+        reports = " ".join(f'<a href="{ISSUES}/{n}" rel="noopener">#{n}</a>' for n in a.get("user_reports", [])) or "—"
         # Amazon は国ごとに違うので言語ごと（その言語がなければ英語の版）。AliExpress は 1 つ
         amazon = a["buy"].get("amazon", {})
         stores = [("Amazon", amazon.get(lang) or amazon.get("en") or ""), ("AliExpress", a["buy"].get("aliexpress") or "")]
         buy = " / ".join(f'<a href="{html.escape(url)}" rel="noopener sponsored">{store}</a>' for store, url in stores if url) or "—"
         rows.append(f'<tr><td>{name}</td><td>{" / ".join(a["types"])}</td>'
-                    f'<td class="{"yes" if a["sleep"] else "no"}">{sleep}</td><td>{buy}</td></tr>')
+                    f'<td class="{sleep_state}">{sleep}</td><td class="mark">{recommended}</td><td>{reports}</td><td>{buy}</td></tr>')
     table = "\n".join(rows)
     p.write(f"""{p.head(f"{t('adapters.title')} — CarReplotter", t("adapters.lead"))}
 <body>
@@ -243,7 +254,7 @@ def adapters_page(lang):
 <p class="lead">{t("adapters.lead")}</p>
 <div class="table-scroll">
 <table class="adapters">
-<thead><tr><th>{t("adapters.col.name")}</th><th>{t("adapters.col.type")}</th><th>{t("adapters.col.sleep")}</th><th>{t("adapters.col.buy")}</th></tr></thead>
+<thead><tr><th>{t("adapters.col.name")}</th><th>{t("adapters.col.type")}</th><th>{t("adapters.col.sleep")}</th><th>{t("adapters.col.recommended")}</th><th>{t("adapters.col.user")}</th><th>{t("adapters.col.buy")}</th></tr></thead>
 <tbody>
 {table}
 </tbody>
@@ -251,8 +262,15 @@ def adapters_page(lang):
 </div>
 <ul class="notes">
 <li>{t("adapters.sleep_note")}</li>
+<li>{t("adapters.recommended_note")}</li>
+<li>{t("adapters.user_note")}</li>
 <li>{t("adapters.disclaimer")}</li>
 </ul>
+<div class="card">
+<h2>{t("adapters.report.heading")}</h2>
+<p>{t("adapters.report.body")}</p>
+<p><a class="button" href="{ISSUES}/new?template=adapter-report.yml" rel="noopener">{t("adapters.report.button")}</a></p>
+</div>
 {p.footer()}
 </main>
 </body>

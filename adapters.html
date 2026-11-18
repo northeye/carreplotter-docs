@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tested adapters — CarReplotter</title>
-<meta name="description" content="OBD2 adapters we have tested with CarReplotter. Other ELM327-compatible adapters with Bluetooth Low Energy (BLE) or Wi-Fi may also work.">
+<meta name="description" content="OBD2 adapters tested with CarReplotter by the developer or by users. Other ELM327-compatible adapters with Bluetooth Low Energy (BLE) or Wi-Fi may also work.">
 <link rel="stylesheet" href="style.css">
 <link rel="alternate" hreflang="ja" href="ja/adapters.html">
 </head>
@@ -15,20 +15,27 @@
   <nav><a href="manual/">User guide</a><a href="privacy.html">Privacy</a><a href="ja/adapters.html">日本語</a></nav>
 </header>
 <h1>Tested adapters</h1>
-<p class="lead">OBD2 adapters we have tested with CarReplotter. Other ELM327-compatible adapters with Bluetooth Low Energy (BLE) or Wi-Fi may also work.</p>
+<p class="lead">OBD2 adapters tested with CarReplotter by the developer or by users. Other ELM327-compatible adapters with Bluetooth Low Energy (BLE) or Wi-Fi may also work.</p>
 <div class="table-scroll">
 <table class="adapters">
-<thead><tr><th>Product</th><th>Connection</th><th>Sleep</th><th>Where to buy</th></tr></thead>
+<thead><tr><th>Product</th><th>Connection</th><th>Sleep</th><th>Recommended</th><th>User reports</th><th>Where to buy</th></tr></thead>
 <tbody>
-<tr><td>Vgate iCar Pro Bluetooth 4.0 (BLE)<span class="sub">It also shows up as "Android-Vlink" (Bluetooth Classic). CarReplotter uses "IOS-Vlink" (BLE).</span></td><td>BLE</td><td class="yes">Yes</td><td>—</td></tr>
-<tr><td>Infocar PH-02<span class="sub">It replies to AT LP but keeps advertising, so "Put to sleep on disconnect" can't be used.</span></td><td>BLE</td><td class="no">No</td><td>—</td></tr>
+<tr><td>Vgate iCar Pro Bluetooth 4.0 (BLE)<span class="sub">It also shows up as "Android-Vlink" (Bluetooth Classic). CarReplotter uses "IOS-Vlink" (BLE).</span></td><td>BLE</td><td class="yes">Yes</td><td class="mark">●</td><td>—</td><td>—</td></tr>
+<tr><td>Infocar PH-02<span class="sub">It replies to AT LP but keeps advertising, so "Put to sleep on disconnect" can't be used.</span></td><td>BLE</td><td class="no">No</td><td class="mark"></td><td>—</td><td>—</td></tr>
 </tbody>
 </table>
 </div>
 <ul class="notes">
 <li>Sleep: whether the adapter goes to sleep with "Put to sleep on disconnect" (AT LP) and wakes up when you start the engine. You can check it in the app from the adapter settings. Adapters without it may still sleep on their own some time after the engine is turned off.</li>
-<li>These are the results of our own tests. They may differ by vehicle, production lot or firmware version.</li>
+<li>Recommended (●): adapters that can sleep. They drain the car battery less while parked.</li>
+<li>User reports: links to reports from users. The developer has tested every adapter on this list unless it is marked otherwise.</li>
+<li>These are the results of tests by the developer and users. They may differ by vehicle, production lot or firmware version.</li>
 </ul>
+<div class="card">
+<h2>Tell us about your adapter</h2>
+<p>If you use an adapter with CarReplotter, please report whether it worked, even if it is already on this list. Reports are accepted as GitHub issues (a GitHub account is needed) and will be added to this page. Please don’t include your VIN, location or other personal information.</p>
+<p><a class="button" href="https://github.com/northeye/carreplotter-docs/issues/new?template=adapter-report.yml" rel="noopener">Report an adapter</a></p>
+</div>
 <footer><p><a href="terms.html">Terms of service</a> · <a href="privacy.html">Privacy policy</a></p><p>Copyright © 2026 Northeye Labs</p></footer>
 </main>
 </body>

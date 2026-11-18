@@ -1,0 +1,80 @@
+name: "Adapter report / アダプターの動作報告"
+description: "Report an OBD2 adapter you used with CarReplotter / CarReplotter で使ったアダプターを報告する"
+title: "[Adapter] "
+labels: ["adapter-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting! Reports are listed on [Tested adapters](https://carreplotter.northeye.org/adapters.html).
+        Please don't paste your VIN, location, or other personal information.
+
+        報告ありがとうございます。いただいた報告は[動作確認済みアダプター](https://carreplotter.northeye.org/ja/adapters.html)のページに載せます。
+        車台番号（VIN）や位置など、個人を特定できる情報は書かないでください。
+  - type: input
+    id: product
+    attributes:
+      label: "Product name / 製品名"
+      description: "Brand and model as printed on the box or listing / 箱や販売ページにある名前（メーカーと型番）"
+      placeholder: "e.g. Vgate iCar Pro Bluetooth 4.0"
+    validations:
+      required: true
+  - type: input
+    id: bluetooth-name
+    attributes:
+      label: "Name shown in the app / アプリに出た名前"
+      description: "The adapter name in CarReplotter's scan list / CarReplotter のスキャンの一覧に出た名前"
+      placeholder: "e.g. IOS-Vlink"
+  - type: input
+    id: link
+    attributes:
+      label: "Official site or where you bought it / 公式サイトか購入したお店"
+      description: "URL if you have one / URL があれば"
+  - type: dropdown
+    id: connection
+    attributes:
+      label: "Connection / 接続のタイプ"
+      options:
+        - "BLE (Bluetooth Low Energy)"
+        - "Wi-Fi"
+    validations:
+      required: true
+  - type: checkboxes
+    id: works
+    attributes:
+      label: "What worked / 動いたこと"
+      options:
+        - label: "Connected and showed values on the meter / 接続してメーターに値が出た"
+        - label: "Recorded a trip with RPM, fuel economy, etc. / 回転数・燃費などを含めて走行を記録できた"
+        - label: "Auto-connected when I got in the car (BLE) / 車に乗ったら自動で接続した（BLE）"
+  - type: dropdown
+    id: sleep
+    attributes:
+      label: "Sleep check / スリープの確認"
+      description: "Result of \"Check whether it can sleep\" in the adapter settings / アダプターの設定の「スリープできるか確認する」の結果"
+      options:
+        - "Works / 利用可能"
+        - "Can't be used: keeps advertising while asleep / 利用できません（スリープしても電波を送出し続けます）"
+        - "Can't be used: doesn't wake when the engine starts / 利用できません（エンジン始動で起きない）"
+        - "Not supported by this adapter / このアダプターは対応していません"
+        - "Not checked / 確認していない"
+    validations:
+      required: true
+  - type: input
+    id: app
+    attributes:
+      label: "App version and phone / アプリの版と端末"
+      description: "Settings → About shows the version / 版は設定の「このアプリについて」にあります"
+      placeholder: "e.g. 0.9.29, Pixel 9 (Android 16)"
+    validations:
+      required: true
+  - type: input
+    id: vehicle
+    attributes:
+      label: "Vehicle (optional) / 車種（任意）"
+      placeholder: "e.g. Toyota Prius 2019"
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Notes / 気づいたこと"
+      description: "Problems, slow responses, values that didn't show, etc. / うまくいかなかったこと、遅さ、出なかった値など"

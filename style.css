@@ -108,3 +108,6 @@ table.adapters .sub { display: block; color: var(--muted); font-size: 0.85rem; m
 table.adapters td.yes { color: var(--accent); font-weight: 600; }
 table.adapters td.no { color: var(--muted); }
 ul.notes { color: var(--muted); font-size: 0.9rem; }
+table.adapters td.unknown { color: var(--muted); }
+table.adapters td.mark, table.adapters th:nth-child(4) { text-align: center; color: var(--accent); }
+a.button { display: inline-block; background: var(--accent); color: #fff; padding: 8px 18px; border-radius: 999px; text-decoration: none; font-weight: 600; }
