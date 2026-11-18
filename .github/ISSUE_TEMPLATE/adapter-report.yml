@@ -53,11 +53,12 @@ body:
       label: "Sleep check / スリープの確認"
       description: "Result of \"Check whether it can sleep\" in the adapter settings / アダプターの設定の「スリープできるか確認する」の結果"
       options:
+        - "Not checked / 確認していない"
         - "Works / 利用可能"
         - "Can't be used: keeps advertising while asleep / 利用できません（スリープしても電波を送出し続けます）"
         - "Can't be used: doesn't wake when the engine starts / 利用できません（エンジン始動で起きない）"
         - "Not supported by this adapter / このアダプターは対応していません"
-        - "Not checked / 確認していない"
+      default: 0
     validations:
       required: true
   - type: input
