@@ -17,6 +17,7 @@
 - プライバシーポリシー（privacy.html・ja/privacy.html）と利用規約（terms.html・ja/terms.html）、特定商取引法に基づく表記（ja/tokushoho.html。日本語だけ）は法的な文書なので翻訳に出さず、手で書く。
   その言語のものがなければ英語のものにリンクする
 - 文言の {privacy}・{email}・{github} は、リンク先などに置き換える
+- このサイトの外へのリンクは、新しいタブで開く（external_links。手で書いた法的な文書にも、作るたびにかける）
 
 文言を直すとき：translations/site/en.json と ja.json を直して carreplotter-i18n に push し、
 ここで git submodule update --remote translations、python3 src/build.py を実行して、できた HTML と一緒にコミットする。
@@ -147,7 +148,50 @@ class Page:
         out = os.path.join(ROOT, lang_dir(self.lang) + self.path)
         os.makedirs(os.path.dirname(out), exist_ok=True)
         with open(out, "w", encoding="utf-8") as f:
-            f.write(content)
+            f.write(external_links(content))
+
+
+# ---- 外部へのリンク ----
+
+SITE_HOST = "carreplotter.northeye.org"
+ANCHOR = re.compile(r"<a\s[^>]*>")
+HREF = re.compile(r'href="(https?://([^/"]+)[^"]*)"')
+REL = re.compile(r'rel="([^"]*)"')
+
+
+def external_links(page):
+    """このサイトの外へのリンク（http・https）を新しいタブで開く（target="_blank"、rel に noopener）。何度かけても同じ結果。"""
+    def fix(m):
+        tag = m.group(0)
+        href = HREF.search(tag)
+        if not href or href.group(2) == SITE_HOST or "target=" in tag:
+            return tag
+        rel = REL.search(tag)
+        if rel:
+            values = rel.group(1).split()
+            if "noopener" not in values:
+                tag = tag.replace(rel.group(0), f'rel="{" ".join(values + ["noopener"])}"')
+        else:
+            tag = tag[:-1] + ' rel="noopener">'
+        return tag[:-1] + ' target="_blank">'
+    return ANCHOR.sub(fix, page)
+
+
+# 手で書いた法的な文書（訳さない）も、作るたびに外部へのリンクを直す
+LEGAL_PAGES = ["privacy.html", "terms.html", "ja/privacy.html", "ja/terms.html", "ja/tokushoho.html"]
+
+
+def fix_legal_pages():
+    for name in LEGAL_PAGES:
+        path = os.path.join(ROOT, name)
+        if not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8") as f:
+            page = f.read()
+        fixed = external_links(page)
+        if fixed != page:
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(fixed)
 
 
 # ---- トップページ ----
@@ -400,6 +444,7 @@ def manual_pages(lang):
     return len(pages) + 1
 
 
+fix_legal_pages()
 for lang in LANGS:
     top(lang)
     adapters_page(lang)
