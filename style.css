@@ -96,3 +96,15 @@ section.feature p { margin: 0; color: var(--muted); }
   section.feature .shots img + img { width: 46%; }
 }
 
+
+/* 動作確認済みアダプター */
+.table-scroll { overflow-x: auto; margin: 24px 0; }
+table.adapters { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+table.adapters th, table.adapters td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+table.adapters th { color: var(--muted); font-size: 0.85rem; font-weight: 600; white-space: nowrap; }
+table.adapters tbody tr:last-child td { border-bottom: none; }
+table.adapters td:not(:first-child) { white-space: nowrap; }
+table.adapters .sub { display: block; color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+table.adapters td.yes { color: var(--accent); font-weight: 600; }
+table.adapters td.no { color: var(--muted); }
+ul.notes { color: var(--muted); font-size: 0.9rem; }

@@ -6,6 +6,7 @@
 - translations/site/ にある言語ごとに作る。英語はサイトのルート、ほかの言語は <言語>/ の下
 - 訳のない文言は英語で出す
 - マニュアルの構成（ページの並び・見出し・段落・画像と番号の座標）は src/manual.py
+- 動作確認済みアダプターの一覧（adapters.html の表。製品名・リンクなど訳さないもの）は src/adapters.py
 - スクリーンショットは manual/img/<言語>/<名前>.png。その言語のものがなければ英語のものを使う
   （撮影は InfoDrive の tools/png_half.py で半分に縮めたもの）
 - 画像に重ねる番号と枠は、元の画面（1080×2424）の座標を割合にして HTML で重ねる（画像には描き込まない）
@@ -35,9 +36,15 @@ LANGUAGE_NAMES = {
     "it": "Italiano", "ko": "한국어", "pt-BR": "Português (Brasil)",
 }
 
-spec = importlib.util.spec_from_file_location("manual", os.path.join(ROOT, "src", "manual.py"))
-manual = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(manual)
+def load_module(name):
+    spec = importlib.util.spec_from_file_location(name, os.path.join(ROOT, "src", f"{name}.py"))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+manual = load_module("manual")
+adapters = load_module("adapters")
 
 
 def load(lang):
@@ -179,7 +186,7 @@ def top(lang):
 <ul>
 {features}
 </ul>
-<p>{t("top.features.adapters")}</p>
+<p>{t("top.features.adapters")} <a href="adapters.html">{t("adapters.title")}</a></p>
 </div>
 
 <div class="card">
@@ -195,6 +202,52 @@ def top(lang):
 
 <p class="store"><a class="play" href="{play}"><img src="{p.root(badge)}" alt="{html.escape(t("top.play_badge_alt"))}"></a></p>
 
+{p.footer()}
+</main>
+</body>
+</html>
+""")
+
+
+# ---- 動作確認済みアダプター ----
+
+def adapters_page(lang):
+    p = Page(lang, "adapters.html")
+    t = p.t
+    rows = []
+    for a in adapters.ADAPTERS:
+        name = html.escape(a["name"])
+        if a["site"]:
+            name = f'<a href="{html.escape(a["site"])}" rel="noopener">{name}</a>'
+        if a.get("note"):
+            name += f'<span class="sub">{t(a["note"])}</span>'
+        sleep = t("adapters.sleep.yes") if a["sleep"] else t("adapters.sleep.no")
+        buy = a["buy"].get(lang) or a["buy"].get("en") or ""
+        buy = f'<a href="{html.escape(buy)}" rel="noopener sponsored">{t("adapters.buy")}</a>' if buy else "—"
+        rows.append(f'<tr><td>{name}</td><td>{" / ".join(a["types"])}</td>'
+                    f'<td class="{"yes" if a["sleep"] else "no"}">{sleep}</td><td>{buy}</td></tr>')
+    table = "\n".join(rows)
+    p.write(f"""{p.head(f"{t('adapters.title')} — CarReplotter", t("adapters.lead"))}
+<body>
+<main>
+<header>
+  <a class="brand" href="./">CarReplotter</a>
+  {p.nav(t("nav.manual"), "manual/")}
+</header>
+<h1>{t("adapters.title")}</h1>
+<p class="lead">{t("adapters.lead")}</p>
+<div class="table-scroll">
+<table class="adapters">
+<thead><tr><th>{t("adapters.col.name")}</th><th>{t("adapters.col.type")}</th><th>{t("adapters.col.sleep")}</th><th>{t("adapters.col.buy")}</th></tr></thead>
+<tbody>
+{table}
+</tbody>
+</table>
+</div>
+<ul class="notes">
+<li>{t("adapters.sleep_note")}</li>
+<li>{t("adapters.disclaimer")}</li>
+</ul>
 {p.footer()}
 </main>
 </body>
@@ -308,5 +361,6 @@ def manual_pages(lang):
 
 for lang in LANGS:
     top(lang)
+    adapters_page(lang)
     n = manual_pages(lang)
     print(f"{lang}: top + {n} manual pages -> /{lang_dir(lang)}")
