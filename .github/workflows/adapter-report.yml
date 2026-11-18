@@ -1,0 +1,46 @@
+# アダプターの動作報告の issue に adapter-approved のラベルを付けたら、src/adapters.json に反映する PR を作る。
+# HTML は作らない（マージのあとに build.yml が作り直す）。PR に修正をコミットしてからマージしてよい。
+# リポジトリの設定（Settings → Actions → General）の「Allow GitHub Actions to create and approve pull requests」が要る。
+name: adapter-report
+on:
+  issues:
+    types: [labeled]
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+concurrency:
+  group: adapter-report-${{ github.event.issue.number }}
+  cancel-in-progress: false
+jobs:
+  pr:
+    if: github.event.label.name == 'adapter-approved'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Update adapters.json
+        # 本文は誰でも書けるので、シェルに直接埋め込まず環境変数からファイルに書いて Python で読む
+        env:
+          BODY: ${{ github.event.issue.body }}
+          NUMBER: ${{ github.event.issue.number }}
+        run: |
+          printf '%s' "$BODY" > "$RUNNER_TEMP/body.md"
+          python3 src/adapter_report.py "$NUMBER" "$RUNNER_TEMP/body.md" "$RUNNER_TEMP/pr.md"
+      - name: Open a pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ github.event.issue.number }}
+        run: |
+          branch="adapter-report-$NUMBER"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add src/adapters.json
+          git commit -m "アダプターの動作報告を反映する（#$NUMBER）"
+          git push --force origin "$branch"
+          if gh pr view "$branch" --json url --jq .url > "$RUNNER_TEMP/url" 2>/dev/null; then
+            gh pr edit "$branch" --body-file "$RUNNER_TEMP/pr.md"
+          else
+            gh pr create --head "$branch" --title "アダプターの動作報告を反映する（#$NUMBER）" --body-file "$RUNNER_TEMP/pr.md" > "$RUNNER_TEMP/url"
+            gh issue comment "$NUMBER" --body "Thank you! This report will be added in $(cat "$RUNNER_TEMP/url") / ありがとうございます。$(cat "$RUNNER_TEMP/url") でページに反映します。"
+          fi

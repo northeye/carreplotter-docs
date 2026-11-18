@@ -1,0 +1,34 @@
+# src/（アダプターの一覧・マニュアルの構成・生成スクリプト）が main に入ったら、ページを作り直してコミットする
+# （push すると Pages が公開し直す）。翻訳はサブモジュールが指している版のまま（更新は translations.yml）。
+name: build
+on:
+  push:
+    branches: [main]
+    paths: ["src/**"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: site
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: true
+      - name: Build
+        run: python3 src/build.py
+      - name: Commit and push
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "ページを作り直す（$(git log -1 --format=%h ${{ github.sha }}) の src/ の変更）"
+          git pull --rebase
+          git push
