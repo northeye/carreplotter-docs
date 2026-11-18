@@ -6,7 +6,9 @@
 - translations/site/ にある言語ごとに作る。英語はサイトのルート、ほかの言語は <言語>/ の下
 - 訳のない文言は英語で出す
 - マニュアルの構成（ページの並び・見出し・段落・画像と番号の座標）は src/manual.py
-- 動作確認済みアダプターの一覧（adapters.html の表。製品名・リンクなど訳さないもの）は src/adapters.py
+- 動作確認済みアダプターの一覧（adapters.html の表。製品名・リンクなど訳さないもの）は src/adapters.json。
+  name 製品名、site 公式サイト（空ならリンクにしない）、types 接続（BLE / Wi-Fi）、sleep「切断時にスリープ」で眠って起きるか、
+  note 補足の文言のキー、buy.amazon は言語ごと（なければ en）、buy.aliexpress は 1 つ。購入リンクが 1 つもなければ「—」
 - スクリーンショットは manual/img/<言語>/<名前>.png。その言語のものがなければ英語のものを使う
   （撮影は InfoDrive の tools/png_half.py で半分に縮めたもの）
 - 画像に重ねる番号と枠は、元の画面（1080×2424）の座標を割合にして HTML で重ねる（画像には描き込まない）
@@ -44,7 +46,8 @@ def load_module(name):
 
 
 manual = load_module("manual")
-adapters = load_module("adapters")
+with open(os.path.join(ROOT, "src", "adapters.json"), encoding="utf-8") as f:
+    ADAPTERS = json.load(f)["adapters"]
 
 
 def load(lang):
@@ -215,15 +218,17 @@ def adapters_page(lang):
     p = Page(lang, "adapters.html")
     t = p.t
     rows = []
-    for a in adapters.ADAPTERS:
+    for a in ADAPTERS:
         name = html.escape(a["name"])
         if a["site"]:
             name = f'<a href="{html.escape(a["site"])}" rel="noopener">{name}</a>'
         if a.get("note"):
             name += f'<span class="sub">{t(a["note"])}</span>'
         sleep = t("adapters.sleep.yes") if a["sleep"] else t("adapters.sleep.no")
-        buy = a["buy"].get(lang) or a["buy"].get("en") or ""
-        buy = f'<a href="{html.escape(buy)}" rel="noopener sponsored">{t("adapters.buy")}</a>' if buy else "—"
+        # Amazon は国ごとに違うので言語ごと（その言語がなければ英語の版）。AliExpress は 1 つ
+        amazon = a["buy"].get("amazon", {})
+        stores = [("Amazon", amazon.get(lang) or amazon.get("en") or ""), ("AliExpress", a["buy"].get("aliexpress") or "")]
+        buy = " / ".join(f'<a href="{html.escape(url)}" rel="noopener sponsored">{store}</a>' for store, url in stores if url) or "—"
         rows.append(f'<tr><td>{name}</td><td>{" / ".join(a["types"])}</td>'
                     f'<td class="{"yes" if a["sleep"] else "no"}">{sleep}</td><td>{buy}</td></tr>')
     table = "\n".join(rows)

@@ -1,0 +1,26 @@
+{
+  "adapters": [
+    {
+      "name": "Vgate iCar Pro Bluetooth 4.0 (BLE)",
+      "site": "",
+      "types": ["BLE"],
+      "sleep": true,
+      "note": "adapters.note.vgate",
+      "buy": {
+        "amazon": {"ja": "", "en": ""},
+        "aliexpress": ""
+      }
+    },
+    {
+      "name": "Infocar PH-02",
+      "site": "",
+      "types": ["BLE"],
+      "sleep": false,
+      "note": "adapters.note.infocar",
+      "buy": {
+        "amazon": {"ja": "", "en": ""},
+        "aliexpress": ""
+      }
+    }
+  ]
+}
