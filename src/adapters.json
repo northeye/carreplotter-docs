@@ -15,7 +15,10 @@
           "adapters.store.official": "https://www.vgatemall.com/products-detail/i-9/"
         },
         {
-          "Amazon.com": "https://www.amazon.com/dp/B06XGB4873/"
+          "Amazon.com": "https://www.amazon.com/dp/B06XGB4873/",
+          "countries": [
+            "US"
+          ]
         },
         {
           "AliExpress": "https://aliexpress.com/item/1005007429089660.html"
@@ -37,10 +40,16 @@
           "adapters.store.official": "https://infocarmall.com/product/%EC%9D%B8%ED%8F%AC%EC%B9%B4-4%EC%84%B8%EB%8C%80-%EC%B6%9C%EC%8B%9C-%EC%9E%90%EB%8F%99%EC%B0%A8-%EC%8A%A4%EC%BA%90%EB%84%88-io180-ph-android-ios%EB%8F%99%EC%8B%9C%ED%98%B8%ED%99%98-obd2-elm327-%EC%9E%90%EB%8F%99%EC%B0%A8-%EC%A7%84%EB%8B%A8%EA%B8%B0/27/category/1/display/2/"
         },
         {
-          "Amazon.co.jp": "https://link.amazon/B0j7IXnzV"
+          "Amazon.co.jp": "https://link.amazon/B0j7IXnzV",
+          "countries": [
+            "JP"
+          ]
         },
         {
-          "Amazon.com": "https://www.amazon.com/dp/B0CYFPR2FN"
+          "Amazon.com": "https://www.amazon.com/dp/B0CYFPR2FN",
+          "countries": [
+            "US"
+          ]
         }
       ]
     }

@@ -11,7 +11,9 @@
   developer 開発者が試したか（false ならユーザーの報告だけで、製品名の下にその旨を出す）。
   user_reports ユーザーの報告の issue の番号（ユーザー確認の列にリンクで出す）。sleep が null なら「未確認」。おすすめ（●）は sleep が true のもの。
   note 補足の文言のキー、buy 購入リンクの並び [{"表示名": "URL"}, ...]（国ごとの Amazon などを好きなだけ。書いた順に全言語で出す。
-  表示名が adapters. で始まれば文言のキーとして訳す（例：adapters.store.official「公式ストア」））。購入リンクが 1 つもなければ「—」
+  表示名が adapters. で始まれば文言のキーとして訳す（例：adapters.store.official「公式ストア」））。
+  "countries": ["JP"] を足すと、その国（ISO 3166 の 2 文字）から見ている人にだけ出す。国は Cloudflare の /cdn-cgi/trace の loc で、
+  ページの JavaScript が見る（同じサイトへの問い合わせだけ）。国がわからないとき・JavaScript が動かないときは全部出す。購入リンクが 1 つもなければ「—」
 - スクリーンショットは manual/img/<言語>/<名前>.png。その言語のものがなければ英語のものを使う
   （撮影は InfoDrive の tools/png_half.py で半分に縮めたもの）
 - 画像に重ねる番号と枠は、元の画面（1080×2424）の座標を割合にして HTML で重ねる（画像には描き込まない）
@@ -160,6 +162,27 @@ HREF = re.compile(r'href="(https?://([^/"]+)[^"]*)"')
 REL = re.compile(r'rel="([^"]*)"')
 
 
+# 国を決めた購入リンク（data-countries）を、見ている人の国のときだけ残す。国は Cloudflare の /cdn-cgi/trace（同じサイト）の loc。
+# 国がわからなければ全部残す。読み終わるまでは CSS（.geo-pending）で隠しておく
+GEO_SCRIPT = """(function () {
+  var root = document.documentElement;
+  function done(loc) {
+    document.querySelectorAll("table.adapters .store[data-countries]").forEach(function (el) {
+      if (loc && el.dataset.countries.split(" ").indexOf(loc) < 0) el.remove();
+    });
+    document.querySelectorAll("table.adapters td.buy").forEach(function (td) {
+      if (!td.querySelector(".store")) td.textContent = "\u2014";
+    });
+    root.classList.remove("geo-pending");
+  }
+  var timer = setTimeout(function () { done(null); }, 3000);
+  fetch("/cdn-cgi/trace").then(function (r) { return r.ok ? r.text() : ""; }).then(function (text) {
+    var m = /^loc=([A-Z]{2})$/m.exec(text);
+    clearTimeout(timer); done(m ? m[1] : null);
+  }).catch(function () { clearTimeout(timer); done(null); });
+})();"""
+
+
 def external_links(page):
     """このサイトの外へのリンク（http・https）を新しいタブで開く（target="_blank"、rel に noopener）。何度かけても同じ結果。"""
     def fix(m):
@@ -297,12 +320,19 @@ def adapters_page(lang):
         recommended = "●" if a.get("sleep") is True else ""
         # ユーザー確認：報告の issue の番号ごとにリンク
         reports = " ".join(f'<a href="{ISSUES}/{n}" rel="noopener">#{n}</a>' for n in a.get("user_reports", [])) or "—"
-        # 購入リンク：[{"表示名": "URL"}, ...] を書いた順に。表示名が adapters. で始まれば文言のキー
-        stores = [(t(title) if title.startswith("adapters.") else title, url)
-                  for link in a.get("buy", []) for title, url in link.items()]
-        buy = " / ".join(f'<a href="{html.escape(url)}" rel="noopener sponsored">{store}</a>' for store, url in stores if url) or "—"
+        # 購入リンク：[{"表示名": "URL", "countries": [...]}, ...] を書いた順に。表示名が adapters. で始まれば文言のキー
+        stores = []
+        for link in a.get("buy", []):
+            countries = " ".join(link.get("countries", []))
+            for title, url in link.items():
+                if title == "countries" or not url:
+                    continue
+                label = t(title) if title.startswith("adapters.") else title
+                attr = f' data-countries="{html.escape(countries)}"' if countries else ""
+                stores.append(f'<span class="store"{attr}><a href="{html.escape(url)}" rel="noopener sponsored">{label}</a></span>')
+        buy = "".join(stores) or "—"
         rows.append(f'<tr><td>{name}</td><td>{" / ".join(a["types"])}</td>'
-                    f'<td class="{sleep_state}">{sleep}</td><td class="mark">{recommended}</td><td>{reports}</td><td>{buy}</td></tr>')
+                    f'<td class="{sleep_state}">{sleep}</td><td class="mark">{recommended}</td><td>{reports}</td><td class="buy">{buy}</td></tr>')
     table = "\n".join(rows)
     p.write(f"""{p.head(f"{t('adapters.title')} — CarReplotter", t("adapters.lead"))}
 <body>
@@ -314,6 +344,7 @@ def adapters_page(lang):
 <h1>{t("adapters.title")}</h1>
 <p class="lead">{t("adapters.lead")}</p>
 <p class="ads"><span class="tag">{t("adapters.ads.tag")}</span>{t("adapters.ads")}{(" " + t("adapters.ads.amazon")) if t("adapters.ads.amazon") else ""}</p>
+<script>document.documentElement.classList.add("geo-pending")</script>
 <div class="table-scroll">
 <table class="adapters">
 <thead><tr><th>{t("adapters.col.name")}</th><th>{t("adapters.col.type")}</th><th>{t("adapters.col.sleep")}</th><th>{t("adapters.col.recommended")}</th><th>{t("adapters.col.user")}</th><th>{t("adapters.col.buy")}</th></tr></thead>
@@ -322,6 +353,7 @@ def adapters_page(lang):
 </tbody>
 </table>
 </div>
+<script>{GEO_SCRIPT}</script>
 <ul class="notes">
 <li>{t("adapters.sleep_note")}</li>
 <li>{t("adapters.recommended_note")}</li>

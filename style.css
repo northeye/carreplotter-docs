@@ -127,3 +127,6 @@ p.price { color: var(--muted); font-size: 0.9rem; }
 /* 広告の表記 */
 p.ads { color: var(--muted); font-size: 0.9rem; }
 p.ads .tag { display: inline-block; border: 1px solid var(--muted); border-radius: 4px; padding: 0 6px; margin-right: 8px; font-size: 0.8rem; line-height: 1.5; }
+/* 購入リンク：区切りの「/」。国を決めたリンクは、国がわかるまで隠す（src/build.py の GEO_SCRIPT） */
+table.adapters .store + .store::before { content: " / "; }
+.geo-pending table.adapters .store[data-countries] { display: none; }
