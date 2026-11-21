@@ -1,5 +1,5 @@
 # src/（アダプターの一覧・マニュアルの構成・生成スクリプト）が main に入ったら、ページを作り直してコミットする
-# （push すると Pages が公開し直す）。翻訳はサブモジュールが指している版のまま（更新は translations.yml）。
+# （push すると Cloudflare Pages が公開し直す）。翻訳はサブモジュールが指している版のまま（更新は translations.yml）。
 # main はほかの push で進んでいることがあるので、最新の main から作り直し、push が断られたらやり直す。
 name: build
 on:

@@ -33,7 +33,7 @@ import re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "translations", "site")
 W, H = 1080, 2424
-EMAIL = "carreplotter@northeye.org"
+EMAIL = "carreplotter@northeye.net"
 GITHUB = "https://github.com/northeye/carreplotter-i18n"
 PLAY = "https://play.google.com/store/apps/details?id=org.northeye.replotter"
 # アダプターの動作報告の受け付け（このリポジトリの issue。テンプレートは .github/ISSUE_TEMPLATE/adapter-report.yml）
@@ -154,7 +154,7 @@ class Page:
 
 # ---- 外部へのリンク ----
 
-SITE_HOST = "carreplotter.northeye.org"
+SITE_HOST = "carreplotter.northeye.net"
 ANCHOR = re.compile(r"<a\s[^>]*>")
 HREF = re.compile(r'href="(https?://([^/"]+)[^"]*)"')
 REL = re.compile(r'rel="([^"]*)"')
