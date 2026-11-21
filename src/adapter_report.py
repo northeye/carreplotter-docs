@@ -97,7 +97,7 @@ def main(number, body_path, pr_body_path):
             "developer": False,
             "note": None,
             "user_reports": [number],
-            "buy": {"official": "", "amazon": {"ja": "", "en": ""}, "aliexpress": ""},
+            "buy": [],
         })
         action = f"新しい製品 `{product}` を足しました（developer: false、sleep: {json.dumps(sleep)}）。"
     with open(DATA, "w", encoding="utf-8") as f:
