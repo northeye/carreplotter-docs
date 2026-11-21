@@ -22,4 +22,4 @@ runs `src/build.py` and commits the result (the push publishes it to Cloudflare 
 To do it by hand: `git submodule update --remote translations`, `python3 src/build.py`, and commit the result together with the submodule.
 
 The privacy policy, the terms of service and the legal notice are written by hand in English and Japanese (they are legal documents and are not translated in carreplotter-i18n).
-When you change it, update "Last updated" in both languages. The custom domain is set in Cloudflare Pages (`CNAME` is left only for GitHub Pages during the move; remove it when carreplotter.northeye.org redirects to the new site).
+When you change it, update "Last updated" in both languages. The custom domain is set in Cloudflare Pages (carreplotter.northeye.org redirects to it from a separate Cloudflare Pages project).
