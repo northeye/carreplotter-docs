@@ -37,7 +37,7 @@ SITE = os.path.join(ROOT, "translations", "site")
 W, H = 1080, 2424
 EMAIL = "carreplotter@northeye.biz"
 GITHUB = "https://github.com/northeye/carreplotter-i18n"
-PLAY = "https://play.google.com/store/apps/details?id=org.northeye.replotter"
+PLAY = "https://play.google.com/store/apps/details?id=biz.northeye.carreplotter"
 # アダプターの動作報告の受け付け（このリポジトリの issue。テンプレートは .github/ISSUE_TEMPLATE/adapter-report.yml）
 ISSUES = "https://github.com/northeye/carreplotter-docs/issues"
 
