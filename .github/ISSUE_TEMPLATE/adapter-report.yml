@@ -6,10 +6,10 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for reporting! Reports are listed on [Tested adapters](https://carreplotter.northeye.net/adapters.html).
+        Thank you for reporting! Reports are listed on [Tested adapters](https://carreplotter.northeye.biz/adapters.html).
         Please don't paste your VIN, location, or other personal information.
 
-        報告ありがとうございます。いただいた報告は[動作確認済みアダプター](https://carreplotter.northeye.net/ja/adapters.html)のページに載せます。
+        報告ありがとうございます。いただいた報告は[動作確認済みアダプター](https://carreplotter.northeye.biz/ja/adapters.html)のページに載せます。
         車台番号（VIN）や位置など、個人を特定できる情報は書かないでください。
   - type: input
     id: product
