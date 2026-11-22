@@ -21,6 +21,18 @@
           ]
         },
         {
+          "楽天": "https://a.r10.to/hPVUIw",
+          "countries": [
+            "JP"
+          ]
+        },
+        {
+          "Yahoo": "https://store.shopping.yahoo.co.jp/funlife/org02723.html",
+          "countries": [
+            "JP"
+          ]
+        },
+        {
           "AliExpress": "https://aliexpress.com/item/1005007429089660.html"
         }
       ]
@@ -41,6 +53,12 @@
         },
         {
           "Amazon.co.jp": "https://link.amazon/B0j7IXnzV",
+          "countries": [
+            "JP"
+          ]
+        },
+        {
+          "Yahoo": "https://store.shopping.yahoo.co.jp/a-ru2/arutsua84a9a8b53.html",
           "countries": [
             "JP"
           ]
