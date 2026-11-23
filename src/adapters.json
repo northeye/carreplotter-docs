@@ -70,6 +70,20 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Vgate iCar Pro 2S",
+      "site": "https://vgatemall.com/products-detail/i-80/",
+      "types": [
+        "BLE"
+      ],
+      "sleep": false,
+      "developer": true,
+      "note": null,
+      "user_reports": [
+        2
+      ],
+      "buy": []
     }
   ]
 }
