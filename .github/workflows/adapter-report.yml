@@ -17,7 +17,15 @@ jobs:
     if: github.event.label.name == 'adapter-approved'
     runs-on: ubuntu-latest
     steps:
+      # main はルールセットで守っていて、迂回できるのはオーナーとこのアプリだけ。push はアプリのトークンで行う
+      # （Contents の読み書きだけを持つ自前の GitHub App。Client ID は変数、秘密鍵はシークレットに入れてある）
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          client-id: ${{ vars.UPDATE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.UPDATE_APP_PRIVATE_KEY }}
       - uses: actions/checkout@v7
+          token: ${{ steps.app-token.outputs.token }}
       - name: Update adapters.json
         # 本文は誰でも書けるので、シェルに直接埋め込まず環境変数からファイルに書いて Python で読む
         env:
@@ -28,12 +36,14 @@ jobs:
           python3 src/adapter_report.py "$NUMBER" "$RUNNER_TEMP/body.md" "$RUNNER_TEMP/pr.md"
       - name: Open a pull request
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
           NUMBER: ${{ github.event.issue.number }}
         run: |
           branch="adapter-report-$NUMBER"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          bot="$APP_SLUG[bot]"
+          git config user.name "$bot"
+          git config user.email "$(gh api "/users/$bot" --jq .id)+$bot@users.noreply.github.com"
           git switch -c "$branch"
           git add src/adapters.json
           git commit -m "アダプターの動作報告を反映する（#$NUMBER）"
