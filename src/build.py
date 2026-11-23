@@ -327,6 +327,8 @@ def adapters_page(lang):
             for title, url in link.items():
                 if title == "countries" or not url:
                     continue
+                if not isinstance(url, str):
+                    raise SystemExit(f"adapters.json: 購入リンク「{title}」の値が URL（文字列）ではない（キーの綴りを確かめる）: {url!r}")
                 label = t(title) if title.startswith("adapters.") else title
                 attr = f' data-countries="{html.escape(countries)}"' if countries else ""
                 stores.append(f'<span class="store"{attr}><a href="{html.escape(url)}" rel="noopener sponsored">{label}</a></span>')

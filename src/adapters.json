@@ -89,7 +89,7 @@
         },
         {
           "Amazon.co.jp": "https://link.amazon/B02YNgSnd",
-          "countires": [
+          "countries": [
             "JP"
           ]
         },
@@ -106,7 +106,7 @@
           ]
         },
         {
-          "AliExpress": "aliexpress.com/item/1005007187220096.html"
+          "AliExpress": "https://aliexpress.com/item/1005007187220096.html"
         }
       ]
     }
