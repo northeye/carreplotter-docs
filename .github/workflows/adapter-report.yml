@@ -25,6 +25,7 @@ jobs:
           client-id: ${{ vars.UPDATE_APP_CLIENT_ID }}
           private-key: ${{ secrets.UPDATE_APP_PRIVATE_KEY }}
       - uses: actions/checkout@v7
+        with:
           token: ${{ steps.app-token.outputs.token }}
       - name: Update adapters.json
         # 本文は誰でも書けるので、シェルに直接埋め込まず環境変数からファイルに書いて Python で読む
