@@ -83,7 +83,32 @@
       "user_reports": [
         2
       ],
-      "buy": []
+      "buy": [
+        {
+          "adapters.store.official": "https://vgatemall.com/products-detail/i-80/"
+        },
+        {
+          "Amazon.co.jp": "https://link.amazon/B02YNgSnd",
+          "countires": [
+            "JP"
+          ]
+        },
+        {
+          "Amazon.com": "https://www.amazon.com/dp/B0CYZRMCK9",
+          "countries": [
+            "US"
+          ]
+        },
+        {
+          "楽天": "https://a.r10.to/h5yzqr",
+          "countries": [
+            "JP"
+          ]
+        },
+        {
+          "AliExpress": "aliexpress.com/item/1005007187220096.html"
+        }
+      ]
     }
   ]
 }
