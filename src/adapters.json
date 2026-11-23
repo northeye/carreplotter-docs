@@ -70,6 +70,20 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Vgate iCar Pro 2S",
+      "site": "",
+      "types": [
+        "BLE"
+      ],
+      "sleep": false,
+      "developer": false,
+      "note": null,
+      "user_reports": [
+        2
+      ],
+      "buy": []
     }
   ]
 }
