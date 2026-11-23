@@ -78,7 +78,7 @@
         "BLE"
       ],
       "sleep": false,
-      "developer": false,
+      "developer": true,
       "note": null,
       "user_reports": [
         2
